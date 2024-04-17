@@ -1,20 +1,10 @@
-import { useState } from 'react'
-
-
+import Login from "./pages/Login"
 
 function App() {
-  
-
   return (
-    <>
-     <h1 className='text-center text-3xl font-bold'>Group C members</h1>
-     <ul className='text-center text-2xl'>
-      <li>Simon Mwangi</li>
-      <li>Plip Wekullo</li>
-      <li>Pricilla Wakahia</li>
-      <li>Victor Muteithia</li>
-     </ul>
-    </>
+    <main className="bg-[#fceade]">
+      <Login/>
+    </main>
   )
 }
 
