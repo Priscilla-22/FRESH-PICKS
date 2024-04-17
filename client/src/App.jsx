@@ -5,11 +5,18 @@ import './index.css';
 import { useState } from 'react'
 import Products from './components/products'
 import {Route,Routes} from 'react-router-dom'
-import Home from './components/Home'
+
 import AddProducts from './components/AddProducts'
 import ProductDetails from './components/ProductDetails'
 import Cart from './components/Cart'
+import Checkout from './components/Checkout'
+import Homepage from './Components/HomePage/HomePage.jsx';
 function App() {
+  
+
+
+
+
 
 
   return (
