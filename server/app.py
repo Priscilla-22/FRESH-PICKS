@@ -1,6 +1,7 @@
 from flask import Flask, jsonify,request,make_response
 from models import Customer, db
 from flask_migrate import Migrate
+from flask_cors import CORS
 from flask_restful import Api,Resource
 import os
 
@@ -10,6 +11,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 api=Api(app)
 
+CORS(app)
 migrate=Migrate(app,db)
 
 db.init_app(app)
@@ -21,7 +23,7 @@ def home():
 
 class CustomerResource(Resource):
 
-    def get(self, id):
+    def get(self, id=None):
         if id:
             customer = Customer.query.get(id)
             if not customer:
@@ -30,27 +32,24 @@ class CustomerResource(Resource):
         else:
             customers = Customer.query.all()
             if not customers:
-                return {'error': 'There are no customers to display.'}, 400
-            return customers.to_dict(), 200
+                return {'error':'There are no customers to display.'}, 200
+            return [c.to_dict() for c in customers], 200
 
     def post(self):
-        data = request.json
-        required = ['username', 'email']
-        if not all(field in data for field in required):
-            return {'error': 'Missing username or email.'}, 400
-        
-        username = data['username']
-        email = data['email']
+        new_record = Customer(
+            username = request.form['username'],
+            email = request.form['email']
+        )
 
-        customer = Customer(username=username, email=email)
-
-        db.session.add(customer)
+        db.session.add(new_record)
         db.session.commit()
 
-        return {'Customer created successfully.'}, 201
+        return make_response({'success':'Customer created successfully.'}), 201
 
     def update(self, id):
         customer = Customer.get(id)
+        if not customer:
+            return make_response({'error': 'Customer not found'}, 404)
         pass
 
     def delete(self, id):
@@ -60,7 +59,7 @@ class CustomerResource(Resource):
         db.session.delete(customer)
         db.session.commit()
 
-        return {'Customer deleted successfully.'}, 204
+        return {'success':'Customer deleted successfully.'}, 204
 
 api.add_resource(CustomerResource, '/customers', '/customers/<int:id>')    
 

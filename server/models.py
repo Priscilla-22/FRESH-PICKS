@@ -23,7 +23,6 @@ class Customer(db.Model, SerializerMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'created_at': self.created_at,
         }
     
     def __repr__(self):
