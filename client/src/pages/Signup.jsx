@@ -1,9 +1,10 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 
-const Login = () => {
-    // const [refreshPage, setRefreshPage] = useState(false)
+
+const Signup = () => {
+    const [refreshPage, setRefreshPage] = useState(false)
 
     const formSchema = yup.object().shape({
         username: yup.string().required('Please enter a name'),
@@ -16,18 +17,18 @@ const Login = () => {
             email: '',
         },
         validationSchema: formSchema,
-        // onSubmit: values => {
-        //     fetch('http://localhost:5555/customers', {
-        //         method: 'POST',
-        //         headers: {'Content-Type': 'application/json',},
-        //         body: JSON.stringify(values)
-        //     })
-        //     .then(r => {
-        //         if (r.status == 200) {
-        //             setRefreshPage(!refreshPage)
-        //         }
-        //     })
-        // }
+        onSubmit: values => {
+            fetch('http://localhost:5555/customers', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json',},
+                body: JSON.stringify(values)
+            })
+            .then(r => {
+                if (r.status == 200) {
+                    setRefreshPage(!refreshPage)
+                }
+            })
+        }
     })
 
     const inputStyles = {
@@ -40,10 +41,10 @@ const Login = () => {
 
   return (
     <section className='w-full h-screen'>
-        <div className='flex flex-1 justify-center items-center px-8'>
+      <div className='flex flex-1 justify-center items-center px-8'>
             <img src="/signup_login.jpg" alt="Log In" className='w-[500px] h-[500px] pt-5 ml-12 mt-5'/>
             <div className='mx-auto mt-10 pt-5 border border-slate-500 rounded-md w-[25%] h-fit flex flex-col items-center justify-evenly'>
-                <h1 className='font-montserrat text-3xl font-bold text-red-500 mb-5'>Log In</h1>
+                <h1 className='font-montserrat text-3xl font-bold text-red-500 mb-5'>Sign Up</h1>
                 <form onSubmit={formik.handleSubmit} className='m-auto flex flex-col justify-evenly'>
                     <label htmlFor="username" className='font-montserrat text-slate-600'>Username</label>
                     <input
@@ -76,8 +77,17 @@ const Login = () => {
                         style={inputStyles}
                         className='mb-6 border rounded-xl border-slate-800 focus:outline-none focus:border-[#fb3640]'
                     />
-                    <button type="submit" className='ease-in-out duration-500 font-montserrat bg-[#fb3640] text-white rounded-xl mt-8 p-1 w-2/5 mx-auto hover:bg-red-200 hover:text-[#fb3640]'>Log In</button>
-                    <p className='font-kanit text-[14px] mt-6 mb-4 mx-auto'>Not a customer? <a href="/signup" className='font-montserrat text-red-500 text-[14px] hover:underline'>Sign up here</a></p>
+                    <label htmlFor="password" className='font-montserrat mt-6 text-slate-800'>Confirm Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        onChange={formik.handleChange}
+                        style={inputStyles}
+                        className='mb-6 border rounded-xl border-slate-800 focus:outline-none focus:border-[#fb3640]'
+                    />
+                    <button type="submit" className='font-montserrat bg-[#fb3640] text-white rounded-xl mt-8 p-1 w-2/5 mx-auto hover:bg-red-200 hover:text-[#fb3640]'>Log In</button>
+                    <p className='font-kanit text-[14px] mt-6 mb-4 mx-auto'>Already a customer? <a href="/login" className='font-montserrat text-red-500 text-[14px] hover:underline'>Sign in instead</a></p>
                 </form>
             </div>
         </div>
@@ -85,4 +95,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Signup
