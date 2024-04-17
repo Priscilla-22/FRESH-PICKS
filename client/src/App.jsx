@@ -1,17 +1,25 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Homepage from './Components/HomePage/HomePage.jsx';
-import './index.css';
+import { useState } from 'react'
+import Products from './components/products'
+import {Route,Routes} from 'react-router-dom'
+import Home from './components/Home'
+import AddProducts from './components/AddProducts'
+import ProductDetails from './components/ProductDetails'
+import Cart from './components/Cart'
+function App() {
+  
 
-const App = () => {
   return (
-    <Router>
-      <div className='App'>
-        <Routes>
-          <Route path='/' element={<Homepage />} />
-        </Routes>
-      </div>
-    </Router>
-  );
-};
+    <>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/products" element={<Products />} />
+      <Route path="/AddProducts" element={<AddProducts />} />
+      <Route path="/Details/:id" element={<ProductDetails />} />
+      <Route path="/cart" element={<Cart />} />
+    </Routes>
+     
+    </>
+  )
+}
 
 export default App;
