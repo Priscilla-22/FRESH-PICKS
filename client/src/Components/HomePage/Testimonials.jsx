@@ -9,6 +9,7 @@ const Testimonials = () => {
     {
       id: 1,
 
+
       name: 'Simon Mwangi',
       title: 'CEO of Acme Inc.',
       quote:
