@@ -1,21 +1,17 @@
-import { useState } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Homepage from './Components/HomePage/HomePage.jsx';
+import './index.css';
 
-
-
-function App() {
-  
-
+const App = () => {
   return (
-    <>
-     <h1 className='text-center text-3xl font-bold'>Group C members</h1>
-     <ul className='text-center text-2xl'>
-      <li>Simon Mwangi</li>
-      <li>Plip Wekullo</li>
-      <li>Pricilla Wakahia</li>
-      <li>Victor Muteithia</li>
-     </ul>
-    </>
-  )
-}
+    <Router>
+      <div className='App'>
+        <Routes>
+          <Route path='/' element={<Homepage />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+};
 
-export default App
+export default App;
