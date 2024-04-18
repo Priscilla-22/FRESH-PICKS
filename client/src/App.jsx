@@ -1,5 +1,5 @@
 
-import Homepage from './Components/HomePage/HomePage.jsx';
+
 import './index.css';
 
 import { useState } from 'react'
