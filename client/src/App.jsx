@@ -7,11 +7,12 @@ import AddProducts from './components/AddProducts'
 import ProductDetails from './components/ProductDetails'
 import Cart from './components/Cart'
 import Checkout from './components/Checkout'
+import Homepage from './Components/HomePage/HomePage.jsx';
 function App() {
   return (
     <div className='App'>
     <Routes>
-      <Route path='/' element={<Homepage />} />
+      <Route path="/" element={<Homepage />} />
       <Route path="/products" element={<Products />} />
       <Route path="/AddProducts" element={<AddProducts />} />
       <Route path="/Details/:id" element={<ProductDetails />} />
