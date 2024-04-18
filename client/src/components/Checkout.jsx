@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-
+import Header from '../Components/HomePage/Header';
 function Checkout() {
     const [cartItems, setCartItems] = useState([]);
     useEffect(() => {
@@ -10,7 +10,9 @@ function Checkout() {
     }, []);
 
     return (
-        <div className="container mx-auto mt-8">
+        <>
+        <Header />
+           <div className="container mx-auto mt-8">
             {!cartItems.length ? (
                 <div className="text-center">
                     <div className="text-2xl text-red-600 font-bold mb-4">No items bought</div>
@@ -60,7 +62,9 @@ function Checkout() {
                     
                 </div>
             )}
-        </div>
+        </div>  
+        </>
+       
     );
 }
 

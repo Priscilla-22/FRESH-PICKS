@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import ProductList from './ProductList';
 import SearchBar from './SearchBar';
 import Category from './CategoryBar';
+import Header from '../Components/HomePage/Header';
 function Products() {
     const [products, setProducts] = useState([]);
     const [input,setInput] = useState("");
@@ -42,7 +43,10 @@ const [selectedCategory,setSelectedCategory] = useState(null)
         setInput(e.target.value)
       }
     return (
-        <div className='block align-middle justify-center'>
+        <div>
+        <Header/>
+         <div className='block align-middle justify-center'>
+
             <h1>Products available in Market</h1>
             <SearchBar HandleChange={HandleChange} value={input}/>
             <Category handleFilter={handleClick}/>
@@ -64,7 +68,9 @@ const [selectedCategory,setSelectedCategory] = useState(null)
                     ))
                 )}
             </div>
+        </div>   
         </div>
+        
     );
 }
 
