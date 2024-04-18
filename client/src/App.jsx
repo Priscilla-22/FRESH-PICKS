@@ -1,20 +1,17 @@
-import { useState } from 'react'
-
-
+import Login from "./pages/Login"
+import Signup from "./pages/Signup"
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
-  
-
   return (
-    <>
-     <h1 className='text-center text-3xl font-bold'>Group C members</h1>
-     <ul className='text-center text-2xl'>
-      <li>Simon Mwangi</li>
-      <li>Plip Wekullo</li>
-      <li>Pricilla Wakahia</li>
-      <li>Victor Muteithia</li>
-     </ul>
-    </>
+    <Router>
+      <main>
+        <Routes>
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/signup' element={<Signup/>}/>
+        </Routes>
+      </main>
+    </Router>
   )
 }
 
