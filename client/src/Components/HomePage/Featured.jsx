@@ -10,7 +10,7 @@ const Featured = () => {
         const response = await axios.get(
           'https://api.npoint.io/c154600ea24f7697608e'
         );
-        setFeaturedProducts(response.data.slice(0, 3)); 
+        setFeaturedProducts(response.data.slice(0, 3));
       } catch (error) {
         console.error('Error fetching data: ', error);
       }
@@ -28,13 +28,13 @@ const Featured = () => {
         <div className='flex flex-wrap'>
           {featuredProducts.map((product) => (
             <div key={product.id} className='w-full md:w-1/3 p-4'>
-              <div className='bg-gray-100 rounded-lg p-4'> 
-                <h3 className='text-xl font-bold mb-2'>{product.name}</h3> 
-                <p className='text-gray-600 mb-2'>Ksh {product.price}</p> 
+              <div className='bg-gray-100 rounded-lg p-4'>
+                <h3 className='text-xl font-bold mb-2'>📌{product.name}</h3>
+                <p className='text-gray-600 mb-2'>Ksh {product.price}</p>
                 <img
                   src={product.image}
                   alt={product.name}
-                  className='w-full h-32 object-cover mb-2' 
+                  className='w-full h-32 object-cover mb-2'
                 />
                 <button className='bg-green-700 text-white py-2 px-4 rounded-full hover:bg-blue-600'>
                   Add to Cart
