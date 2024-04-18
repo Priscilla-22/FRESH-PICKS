@@ -1,7 +1,9 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import {toast} from 'react-toastify'
+import { useNavigate } from 'react-router-dom';
 function AddProducts() {
+  const navigate= useNavigate()
   return (
     <div className="max-w-md mx-auto">
       <h1 className="text-2xl mb-4">Add Product</h1>
@@ -89,7 +91,7 @@ function AddProducts() {
             </div>
 
             <div className="flex items-center justify-between">
-              <button className="bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" disabled={isSubmitting}>
+              <button onClick={()=>navigate('/products')} className="bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" disabled={isSubmitting}>
                 Submit
               </button>
             </div>
