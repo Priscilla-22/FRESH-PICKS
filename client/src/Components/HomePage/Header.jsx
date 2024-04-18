@@ -13,37 +13,33 @@ import { Link } from 'react-router-dom';
         <nav>
           <ul className='flex space-x-4'>
             <li>
-              <a href='/' className='active hover:underline text-xl'>
+              <a href='/' className='active hover:underline text-lg'>
                 Home
               </a>
             </li>
             <li>
-              <a href='/products' className='hover:underline text-xl'>
+              <a href='/products' className='hover:underline text-lg'>
                 Products
               </a>
             </li>
             <li>
-
-              <a href='/cart' className='hover:underline text-xl'>
+              <a href='/cart' className='hover:underline text-lg'>
                 Cart
               </a>
             </li>
             <li>
-              <a href='/branches' className='hover:underline text-xl'>
+              <a href='/branches' className='hover:underline text-lg'>
                 Branches
               </a>
             </li>
             <li className='hidden md:flex'>
-            
-              <a href='/' className='hover:underline text-xl'>
-
+              <a href='/' className='hover:underline text-lg'>
                 About Us
               </a>
             </li>
           </ul>
         </nav>
         <div className='flex items-center space-x-4'>
-          
           <a href='#' className='hover:underline'>
             Login
           </a>
@@ -53,11 +49,12 @@ import { Link } from 'react-router-dom';
           </a>
         </div>
         <div className='shopping-cart'>
-        <Link className='relative' to='/cart'>
-          <ShoppingCartIcon fontSize='large'/>
-          <span className='rounded-full text-black p-1 w-2 h-2 bg-white'>0</span>
-        </Link>
-          
+          <Link className='relative' to='/cart'>
+            <ShoppingCartIcon fontSize='large' />
+            <span className='rounded-full text-black p-1 w-2 h-2 bg-white'>
+              0
+            </span>
+          </Link>
         </div>
       </div>
     </header>
