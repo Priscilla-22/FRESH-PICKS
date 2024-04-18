@@ -11,28 +11,28 @@ function Header() {
         <nav>
           <ul className='flex space-x-4'>
             <li>
-              <a href='#' className='hover:underline'>
+              <a href='/' className='hover:underline'>
                 Home
               </a>
             </li>
             <li>
-              <a href='#' className='hover:underline'>
+              <a href='/products' className='hover:underline'>
                 Products
               </a>
             </li>
             <li>
-              <a href='#' className='hover:underline'>
+              <a href='/cart' className='hover:underline'>
                 Cart
               </a>
             </li>
             <li>
-              <a href='#' className='hover:underline'>
+              <a href='/branches' className='hover:underline'>
                 Branches
               </a>
             </li>
             <li className='hidden md:flex'>
               {/* Hide on smaller screens */}
-              <a href='#' className='hover:underline'>
+              <a href='/' className='hover:underline'>
                 About Us
               </a>
             </li>

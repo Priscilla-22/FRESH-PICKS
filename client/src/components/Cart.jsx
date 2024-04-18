@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Category from "./CategoryBar";
 import { useNavigate } from "react-router-dom";
+import Header from "../Components/HomePage/Header";
 
 function Cart() {
     const [cartItems, setCartItems] = useState([]);
@@ -48,6 +49,7 @@ const navigate=useNavigate()
 
     return (
         <>
+        <Header/>
         <Category/>
             <div className="container mx-auto mt-8">
         

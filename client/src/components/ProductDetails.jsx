@@ -5,6 +5,7 @@ import { toast} from 'react-toastify';
 import Category from './CategoryBar';
 import { Box,Link } from '@mui/material';
 import { Formik } from 'formik';
+import Header from '../Components/HomePage/Header';
 function ProductDetails() {
     const currentProduct = useLocation();
     const [isLoading ,setLoading]= useState(false)
@@ -81,6 +82,7 @@ function ProductDetails() {
     
     return (
         <div>
+        <Header/>
             <Category />
             <div className="max-w-4xl mx-auto p-5 mt-10">
         
