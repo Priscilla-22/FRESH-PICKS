@@ -1,10 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
 import ProductList from './ProductList';
-
+import SearchBar from './SearchBar';
+import Category from './CategoryBar';
 function Products() {
     const [products, setProducts] = useState([]);
-
+    const [input,setInput] = useState("");
+const [selectedCategory,setSelectedCategory] = useState(null)
+    const filterProducts=products.filter(product=>{
+        const searchProduct=input ==="" ||product.name.toUpperCase().startsWith(input.toUpperCase())
+        const SetCategory=selectedCategory===null ||product.category === selectedCategory
+        return searchProduct && SetCategory
+    })
+    function handleClick(className){ //to handle the filters
+        setSelectedCategory(className)
+       }
+       
     useEffect(() => {
         fetch('http://127.0.0.1:5555/products')
             .then(res => res.json())
@@ -27,15 +38,19 @@ function Products() {
             return updatedProducts;
         });
     };
-
+    function HandleChange(e){  //for handling the input
+        setInput(e.target.value)
+      }
     return (
         <div className='block align-middle justify-center'>
             <h1>Products available in Market</h1>
+            <SearchBar HandleChange={HandleChange} value={input}/>
+            <Category handleFilter={handleClick}/>
             <div className='flex flex-wrap text-center'>
                 {products.length < 1 ? (
                     <div><h1>Loading....</h1></div>
                 ) : (
-                    products.map((product, index) => (
+                    filterProducts.map((product, index) => (
                         <ProductList
                             key={product.id}
                             name={product.name}
