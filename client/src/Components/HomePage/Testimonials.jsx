@@ -8,19 +8,19 @@ const Testimonials = () => {
   const testimonials = [
     {
       id: 1,
-      name: 'John Doe',
+      name: 'Simon Mwangi',
       title: 'CEO of Acme Inc.',
       quote: 'Fresh Picks has completely changed the way I do grocery shopping. The produce is always fresh and the delivery is fast and reliable.'
     },
     {
       id: 2,
-      name: 'Jane Smith',
+      name: 'Victor Muteithia',
       title: 'Marketing Manager',
       quote: 'I love how easy it is to use Fresh Picks. The website is intuitive and the selection of products is impressive.'
     },
     {
       id: 3,
-      name: 'Mike Johnson',
+      name: 'Priscilla Wakahia',
       title: 'Software Engineer',
       quote: 'I was skeptical at first, but Fresh Picks has won me over. The quality of the food is excellent and the convenience can\'t be beat.'
     }

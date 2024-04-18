@@ -1,15 +1,17 @@
 // Categories.jsx
-import React from 'react';
+import  { useState, useEffect } from 'react';
 import Category from './Category';
 import axios from 'axios';
 
 const Categories = () => {
-  const [categories, setCategories] = React.useState([]);
+  const [categories, setCategories] = useState([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:5555/products');
+        const response = await axios.get(
+          'https://api.npoint.io/c154600ea24f7697608e'
+        );
         setCategories(response.data);
       } catch (error) {
         console.error('Error fetching data: ', error);
@@ -27,9 +29,7 @@ const Categories = () => {
           {categories.map((category) => (
             <Category
               key={category.id}
-              name={category.name}
-              image={category.image}
-              description={category.description}
+              category={category.category} // Pass category prop here
             />
           ))}
         </div>
@@ -39,3 +39,4 @@ const Categories = () => {
 };
 
 export default Categories;
+
