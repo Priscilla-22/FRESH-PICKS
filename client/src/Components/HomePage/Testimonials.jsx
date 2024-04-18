@@ -10,19 +10,29 @@ const Testimonials = () => {
       id: 1,
       name: 'Simon Mwangi',
       title: 'CEO of Acme Inc.',
-      quote: 'Fresh Picks has completely changed the way I do grocery shopping. The produce is always fresh and the delivery is fast and reliable.'
+      quote:
+        'Fresh Picks has completely changed the way I do grocery shopping. The produce is always fresh and the delivery is fast and reliable.',
     },
     {
       id: 2,
       name: 'Victor Muteithia',
       title: 'Marketing Manager',
-      quote: 'I love how easy it is to use Fresh Picks. The website is intuitive and the selection of products is impressive.'
+      quote:
+        'I love how easy it is to use Fresh Picks. The website is intuitive and the selection of products is impressive.',
     },
     {
       id: 3,
       name: 'Priscilla Wakahia',
       title: 'Software Engineer',
-      quote: 'I was skeptical at first, but Fresh Picks has won me over. The quality of the food is excellent and the convenience can\'t be beat.'
+      quote:
+        "I was skeptical at first, but Fresh Picks has won me over. The quality of the food is excellent and the convenience can't be beat.",
+    },
+    {
+      id: 4,
+      name: 'Philip Wekullo',
+      title: 'Marketing Manager',
+      quote:
+        'I love how easy it is to use Fresh Picks. The website is intuitive and the selection of products is impressive.',
     }
   ];
 
