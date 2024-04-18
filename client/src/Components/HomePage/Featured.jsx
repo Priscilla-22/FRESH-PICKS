@@ -28,7 +28,7 @@ const Featured = () => {
         <div className='flex flex-wrap -mx-2'>
           {featuredProducts.map((product) => (
             <div key={product.id} className='w-full md:w-1/3 px-2'>
-              <div className='bg-white rounded-lg shadow-lg p-4'>
+              <div className='bg-white rounded-lg shadow-lg p-4 transition duration-300 ease-in-out transform hover:scale-105'>
                 <div className='flex items-center mb-4'>
                   <div className='w-12 h-12 rounded-full overflow-hidden mr-4'>
                     <img src={product.image} alt={product.name} />
@@ -42,7 +42,7 @@ const Featured = () => {
                   </div>
                 </div>
                 <p className='text-gray-600'>{product.description}</p>
-                <button className='bg-green-700 text-white py-2 px-4 rounded-full hover:bg-blue-600 w-full mt-4'>
+                <button className='bg-green-700 text-white py-2 px-4 rounded-full hover:bg-green-600 w-full mt-4'>
                   Add to Cart
                 </button>
               </div>
