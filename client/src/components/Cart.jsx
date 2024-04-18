@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Category from "./CategoryBar";
 import { useNavigate } from "react-router-dom";
 import Header from "../Components/HomePage/Header";
+import Footer from "../Components/HomePage/Footer";
 
 function Cart() {
     const [cartItems, setCartItems] = useState([]);
@@ -65,7 +66,7 @@ const navigate=useNavigate()
                     <h2 className="text-5xl">Your cart is empty</h2>
                     <p>Proceed to shop to view some of our fresh from the farm products</p>
                     <p>Happy shopping😊</p>
-                   <button onClick={()=>navigate('/products')} className="px-8 py-3 bg-green-600 mt-4 rounded-md text-white font-bold">Start Shopping</button>
+                   <button onClick={()=>navigate('/products')} className="px-8 py-3 bg-green-600 mt-4 mb-4 rounded-md text-white font-bold">Start Shopping</button>
                 </div>
             ) : (
                 <div className="cartProducts items-center mx-auto text-center">
@@ -103,6 +104,7 @@ const navigate=useNavigate()
                 
             )}
         </div> 
+        <Footer/>
         </>
        
     );

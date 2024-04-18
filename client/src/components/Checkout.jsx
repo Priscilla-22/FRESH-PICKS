@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../Components/HomePage/Header';
+import Footer from '../Components/HomePage/Footer';
 function Checkout() {
     const [cartItems, setCartItems] = useState([]);
     useEffect(() => {
@@ -20,7 +21,7 @@ function Checkout() {
             ) : (
                 <div>
                     <h1 className="text-3xl text-green-600 font-bold mb-4">Your Order</h1>
-                    <div className="block w-1/4 items-center shadow-sm justify-around border-2 border-b py-4">
+                    <div className="block w-1/4 items-center shadow-sm justify-around border-2 border-b py-4 mb-5">
                     {cartItems.map((item, index) => (
                         <div key={index} >
                             <div className="flex items-center justify-around">
@@ -63,6 +64,7 @@ function Checkout() {
                 </div>
             )}
         </div>  
+        <Footer/>
         </>
        
     );

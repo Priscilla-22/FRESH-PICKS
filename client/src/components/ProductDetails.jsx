@@ -6,6 +6,7 @@ import Category from './CategoryBar';
 import { Box,Link } from '@mui/material';
 import { Formik } from 'formik';
 import Header from '../Components/HomePage/Header';
+import Footer from '../Components/HomePage/Footer';
 function ProductDetails() {
     const currentProduct = useLocation();
     const [isLoading ,setLoading]= useState(false)
@@ -84,9 +85,9 @@ function ProductDetails() {
         <div>
         <Header/>
             <Category />
-            <div className="max-w-4xl mx-auto p-5 mt-10">
+            <div className="max-w-4xl mx-auto p-5 mt-5">
         
-            <div className="flex items-center border-x-2 mt-60">
+            <div className="flex items-center border-x-2 mt-20">
                 <img src={product.image} className='h-72 w-auto mr-6' alt={product.name} />
                 <div>
                     <h1 className='text-2xl font-bold'>{product.name}</h1>
@@ -123,6 +124,7 @@ function ProductDetails() {
              </Box>
             ))}    
             </div>
+            <Footer/>
         </div>
         
     );
