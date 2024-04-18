@@ -4,6 +4,7 @@ import ProductList from './ProductList';
 import SearchBar from './SearchBar';
 import Category from './CategoryBar';
 import Header from '../Components/HomePage/Header';
+import Footer from '../Components/HomePage/Footer';
 function Products() {
     const [products, setProducts] = useState([]);
     const [input,setInput] = useState("");
@@ -69,6 +70,7 @@ const [selectedCategory,setSelectedCategory] = useState(null)
                 )}
             </div>
         </div>   
+        <Footer/>
         </div>
         
     );
