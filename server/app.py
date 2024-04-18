@@ -46,11 +46,16 @@ class CustomerResource(Resource):
 
         return make_response({'success':'Customer created successfully.'}), 201
 
-    def update(self, id):
-        customer = Customer.get(id)
+    def patch(self, id):
+        customer = Customer.query.filter_by(id=id).first()
         if not customer:
             return make_response({'error': 'Customer not found'}, 404)
-        pass
+        data = request.json
+        for key, value in data.items():
+            setattr(customer, key, value)
+        db.session.commit()    
+
+        return make_response(customer.to.dict(), 200)
 
     def delete(self, id):
         customer = Customer.query.get(id)
