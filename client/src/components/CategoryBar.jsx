@@ -6,7 +6,7 @@ function Category({ handleFilter}) { //handlefilter as prop
         <button onClick={()=>handleFilter("fruits")} className='p-3  m-2 border-r-2 border-lime-600 text-white font-bold'>Fruits</button>
         <button onClick={()=>handleFilter("Dairy")}  className='p-3  m-2 border-r-2 border-lime-600 text-white font-bold'>Dairy</button>
         <button onClick={()=>handleFilter("Veggies")} className='p-3  m-2 border-r-2 border-lime-600 text-white font-bold'>Veggies</button>
-        <button onClick={()=>handleFilter("Meat")}  className='p-3  m-2 border-r-2 border-lime-600 text-white font-bold'>Meat</button>
+        <button onClick={()=>handleFilter("meat")}  className='p-3  m-2 border-r-2 border-lime-600 text-white font-bold'>Meat</button>
         <button onClick={()=>handleFilter("Nuts")} className='p-3  m-2 border-r-2 border-lime-600 text-white font-bold'>Nuts</button>
         <button onClick={()=>handleFilter("Cereals")}   className='p-3  m-2 border-r-2 border-lime-600 text-white font-bold'>Cereals</button>
       </div>
