@@ -1,5 +1,4 @@
-// Categories.jsx
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Category from './Category';
 import axios from 'axios';
 
@@ -12,7 +11,7 @@ const Categories = () => {
         const response = await axios.get(
           'https://api.npoint.io/c154600ea24f7697608e'
         );
-        setCategories(response.data);
+        setCategories(response.data.slice(0, 4));
       } catch (error) {
         console.error('Error fetching data: ', error);
       }
@@ -27,10 +26,7 @@ const Categories = () => {
         <h2 className='text-4xl font-bold mb-8'>Shop by Category</h2>
         <div className='flex flex-wrap'>
           {categories.map((category) => (
-            <Category
-              key={category.id}
-              category={category.category} // Pass category prop here
-            />
+            <Category key={category.id} id={category.id} />
           ))}
         </div>
       </div>
@@ -39,4 +35,3 @@ const Categories = () => {
 };
 
 export default Categories;
-
