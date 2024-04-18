@@ -12,13 +12,6 @@ import Cart from './components/Cart'
 import Checkout from './components/Checkout'
 import Homepage from './Components/HomePage/HomePage.jsx';
 function App() {
-  
-
-
-
-
-
-
   return (
    
     <>
