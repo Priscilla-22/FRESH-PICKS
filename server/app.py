@@ -2,11 +2,16 @@ from flask import Flask,request,make_response
 from models import db, Branch
 from flask_migrate import Migrate
 from flask_restful import Api,Resource
+# from flask_bcrypt import Bcrypt
+from flask_cors import CORS
 import os
 
 app=Flask(__name__)
+# app.config['UPLOAD_EXTENSIONS'] = [".jpg", ".png"]
+# app.config['UPLOAD_PATH'] = "images"
 app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.json.compact = False
 api=Api(app)
 migrate=Migrate(app,db)
 db.init_app(app)
@@ -17,9 +22,9 @@ db.init_app(app)
 def home():
     return "<h1>Welcome to group C api</h1>"
 
-class Branch(Resource):
+class Branches(Resource):
     def get(self):
-        response_dict_list = [branch.to_dict for branch in Branch.query.all()]
+        response_dict_list = [branch.to_dict() for branch in Branch.query.all()]
 
         response = make_response(response_dict_list, 200)
         return response
@@ -38,7 +43,7 @@ class Branch(Resource):
 
         return response
 
-api.add_resource(Branch, '/branches')
+api.add_resource(Branches, '/branches')
 
 
 class BranchByID(Resource):
