@@ -22,7 +22,7 @@ const handleOpen = () =>{
     <h1 className='text-2xl font-bold'>{name}</h1>
     <p className='text-green-700 font-bold text-xl'>Price: Ksh {price}</p>
     {showbutton && (
-        <button onClick={handleOpen}  className='btn w-full py-3 bg-white border-2 text-green-800 hover:text-white font-bold hover:bg-green-700'>
+        <button onClick={handleOpen}  className='btn w-full py-3     hover:bg-white border-2 hover:text-green-800 text-white font-bold bg-green-700'>
         View details
     </button>
     )}
