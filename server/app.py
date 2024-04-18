@@ -43,7 +43,7 @@ class Products(Resource):
             image=data.get('image'),
               # Assign user_id from session
         )
-        db.session.add(jsonify(new_product))
+        db.session.add(new_product)
         db.session.commit()
         return jsonify({"message": "Product added successfully"}), 201
         
