@@ -38,9 +38,9 @@ const Testimonials = () => {
   };
 
   return (
-    <div className="py-16 bg-gray-100">
+    <div className="py-10 bg-gray-100">
       <div className="container mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-8">What Our Customers Are Saying</h2>
+        <h2 className="text-4xl font-bold mb-5">What Our Customers Are Saying</h2>
         <Slider {...settings}>
           {testimonials.map((testimonial) => (
             <div key={testimonial.id} className="text-center">

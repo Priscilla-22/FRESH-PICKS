@@ -23,7 +23,7 @@ const Categories = () => {
   return (
     <div className='py-16 bg-gray-100'>
       <div className='container mx-auto text-center'>
-        <h2 className='text-4xl font-bold mb-8'>Shop by Category</h2>
+        <h2 className='text-4xl font-bold mb-5'>Shop by Category</h2>
         <div className='flex flex-wrap'>
           {categories.map((category) => (
             <Category key={category.id} id={category.id} />
