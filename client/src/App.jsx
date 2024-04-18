@@ -1,5 +1,5 @@
+
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import {Route,Routes} from 'react-router-dom'
 import Products from './components/products'
 
 import Login from "./pages/Login"
@@ -11,23 +11,22 @@ import Checkout from './components/Checkout'
 import Homepage from './Components/HomePage/HomePage.jsx';
 function App() {
   return (
-   <Router>
-
-    <main>
-    <Routes>
-      <Route path="/" element={<Homepage />} />
-      <Route path='/login' element={<Login/>}/>
-      <Route path='/signup' element={<Signup/>}/>
-      <Route path="/products" element={<Products />} />
-      <Route path="/checkout" element={<Checkout />} />
-      <Route path="/AddProducts" element={<AddProducts />} />
-      <Route path="/Details/:id" element={<ProductDetails />} />
-      <Route path="/cart" element={<Cart />} />
-      
-    </Routes>
-     
-    </main>
-   </Router>
+    <Router>
+      <main>
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/signup' element={<Signup/>}/>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/AddProducts" element={<AddProducts />} />
+          <Route path="/Details/:id" element={<ProductDetails />} />
+          <Route path="/cart" element={<Cart />} />        
+        </Routes>      
+      </main>
+    </Router>
+   
   )
 }
 

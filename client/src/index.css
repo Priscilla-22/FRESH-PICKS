@@ -5,10 +5,8 @@
 @tailwind components;
 @tailwind utilities;
 
-<<<<<<< HEAD
 body::-webkit-scrollbar {
     display: none;
-=======
 
 #display{
     background-image: url('https://res.cloudinary.com/doifxgf1h/image/upload/v1713332231/GROCERY%20ITEMS/delicious-1_oephvs.avif');
@@ -26,5 +24,4 @@ body::-webkit-scrollbar {
 }
 li a.active{
     border-bottom: 2px solid #0a0c0a;
->>>>>>> 9185b6ccf07745b48f94a2d620215703f1f64b60
 }

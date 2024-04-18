@@ -12,7 +12,6 @@ metadata = MetaData(naming_convention={
 })
 
 db = SQLAlchemy(metadata=metadata)
-<<<<<<< HEAD
 
 class Customer(db.Model, SerializerMixin):
     __tablename__ = 'customers'
@@ -32,7 +31,6 @@ class Customer(db.Model, SerializerMixin):
     
     def __repr__(self):
         return f'<Customer {self.username} created.>'
-=======
 class Customer(db.Model):
     __tablename__ = 'customers'
     id = db.Column(db.Integer(), primary_key=True)
@@ -77,5 +75,4 @@ class Cart(db.Model,SerializerMixin):
     
 
             
->>>>>>> 9185b6ccf07745b48f94a2d620215703f1f64b60
     

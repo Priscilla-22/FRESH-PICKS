@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 from app import app
-from models import Customer, db
+from models import Customer, Product, db
 
 with app.app_context():
     # Delete all rows in all tables
@@ -27,13 +26,7 @@ with app.app_context():
     db.session.commit()
     
     print('Done!')
-=======
-from models import Product,db
-from app import app
 
-with app.app_context():
-    db.drop_all()
-    db.create_all()
     
     
     products=[]
@@ -104,4 +97,4 @@ with app.app_context():
     ))
     db.session.add_all(products)
     db.session.commit()
->>>>>>> 9185b6ccf07745b48f94a2d620215703f1f64b60
+    db.session.commit()
