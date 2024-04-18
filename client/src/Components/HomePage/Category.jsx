@@ -28,12 +28,12 @@ const Category = ({ id }) => {
 
   return (
     <div className='w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col'>
-      <div className='flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow'>
+      <div className='flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow-sm'>
         <a href='#' className='flex flex-wrap no-underline hover:no-underline'>
-          <p className='w-full text-gray-600 text-xs md:text-sm px-6'>
-            {product.name}
+          <p className='w-full font-bold  text-gray-600 text-xl md:text-xl px-6'>
+            {product.category}
           </p>
-          <div className='w-full font-bold text-xl text-gray-800 px-6'>
+          <div className='w-full text-sm font-bold  text-gray-800 px-6'>
             {product.description}
           </div>
         </a>

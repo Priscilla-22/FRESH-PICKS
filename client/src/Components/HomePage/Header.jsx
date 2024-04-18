@@ -1,4 +1,6 @@
-function Header() {
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Link } from 'react-router-dom';
+  function Header() {
   return (
     <header className='bg-green-700 text-white py-4'>
       <div className='container mx-auto flex justify-between items-center'>
@@ -11,29 +13,29 @@ function Header() {
         <nav>
           <ul className='flex space-x-4'>
             <li>
-              <a href='/' className='hover:underline'>
+              <a href='/' className='active hover:underline text-xl'>
                 Home
               </a>
             </li>
             <li>
-              <a href='/products' className='hover:underline'>
+              <a href='/products' className='hover:underline text-xl'>
                 Products
               </a>
             </li>
             <li>
 
-              <a href='/cart' className='hover:underline'>
+              <a href='/cart' className='hover:underline text-xl'>
                 Cart
               </a>
             </li>
             <li>
-              <a href='/branches' className='hover:underline'>
+              <a href='/branches' className='hover:underline text-xl'>
                 Branches
               </a>
             </li>
             <li className='hidden md:flex'>
-              {/* Hide on smaller screens */}
-              <a href='/' className='hover:underline'>
+            
+              <a href='/' className='hover:underline text-xl'>
 
                 About Us
               </a>
@@ -41,7 +43,7 @@ function Header() {
           </ul>
         </nav>
         <div className='flex items-center space-x-4'>
-          {/* Add space between Login and Sign Up */}
+          
           <a href='#' className='hover:underline'>
             Login
           </a>
@@ -51,10 +53,11 @@ function Header() {
           </a>
         </div>
         <div className='shopping-cart'>
-          <svg className='fill-current text-red h-6 w-6' viewBox='0 0 20 20'>
-            <path d='M16 5h2a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h2' />
-            <circle cx='10' cy='10' r='7' />
-          </svg>
+        <Link className='relative' to='/cart'>
+          <ShoppingCartIcon fontSize='large'/>
+          <span className='rounded-full text-black p-1 w-2 h-2 bg-white'>0</span>
+        </Link>
+          
         </div>
       </div>
     </header>

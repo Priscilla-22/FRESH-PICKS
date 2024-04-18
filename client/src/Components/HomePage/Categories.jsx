@@ -11,7 +11,7 @@ const Categories = () => {
         const response = await axios.get(
           'https://api.npoint.io/c154600ea24f7697608e'
         );
-        setCategories(response.data.slice(0, 4));
+        setCategories(response.data.slice(3, 7));
       } catch (error) {
         console.error('Error fetching data: ', error);
       }

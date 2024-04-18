@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 const Featured = () => {
   const [featuredProducts, setFeaturedProducts] = React.useState([]);
-
+const navigate=useNavigate()
   React.useEffect(() => {
     const fetchData = async () => {
       try {
@@ -42,8 +42,8 @@ const Featured = () => {
                   </div>
                 </div>
                 <p className='text-gray-600'>{product.description}</p>
-                <button className='bg-green-700 text-white py-2 px-4 rounded-full hover:bg-green-600 w-full mt-4'>
-                  Add to Cart
+                <button onClick={()=>navigate('/products')} className='bg-green-700 text-white py-2 px-4 rounded-full hover:bg-green-600 w-full mt-4'>
+                  View more
                 </button>
               </div>
             </div>
