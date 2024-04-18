@@ -6,13 +6,7 @@ import Homepage from './Components/HomePage/HomePage.jsx';
 import AddProducts from './components/AddProducts'
 import ProductDetails from './components/ProductDetails'
 import Cart from './components/Cart'
-
-  
-
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Homepage from './Components/HomePage/HomePage.jsx';
-import './index.css';
-
+import Checkout from './components/Checkout'
 function App() {
   return (
     <div className='App'>
@@ -21,6 +15,7 @@ function App() {
       <Route path="/products" element={<Products />} />
       <Route path="/AddProducts" element={<AddProducts />} />
       <Route path="/Details/:id" element={<ProductDetails />} />
+      <Route path="/checkout/" element={<Checkout />} />
       <Route path="/cart" element={<Cart />} />
     </Routes>
      
