@@ -1,19 +1,21 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import Header from './Components/Header'
 
 
 
 function App() {
+  // const[branches, setBranches] = useState("")
+
+  useEffect(() => {
+    fetch("/branches")
+    .then((r) => r.json())
+    .then((branches) => console.log(branches))
+  }, [])
   
 
   return (
     <>
-     <h1 className='text-center text-3xl font-bold'>Group C members</h1>
-     <ul className='text-center text-2xl'>
-      <li>Simon Mwangi</li>
-      <li>Plip Wekullo</li>
-      <li>Pricilla Wakahia</li>
-      <li>Victor Muteithia</li>
-     </ul>
+    <Header/>
     </>
   )
 }
