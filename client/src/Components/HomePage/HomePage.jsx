@@ -3,7 +3,6 @@ import Hero from './Hero';
 import Featured from './Featured';
 import Categories from './Categories';
 import Testimonials from './Testimonials';
-// import CallToAction from './CallToAction';
 import Footer from './Footer';
 
 function HomePage() {
@@ -14,7 +13,6 @@ function HomePage() {
       <Featured />
       <Categories />
       <Testimonials />
-      {/* <CallToAction /> */}
       <Footer />
     </div>
   );
