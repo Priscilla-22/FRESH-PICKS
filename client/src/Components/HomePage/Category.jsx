@@ -1,16 +1,17 @@
-// Category.jsx
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-const Category = ({ category }) => {
+const Category = ({ id }) => {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:5555/products');
-        const product = response.data.find((p) => p.category === category);
+        const response = await axios.get(
+          'https://api.npoint.io/c154600ea24f7697608e'
+        );
+        const product = response.data.find((p) => p.id === id);
         setProduct(product);
       } catch (error) {
         console.error('Error fetching data: ', error);
@@ -18,7 +19,7 @@ const Category = ({ category }) => {
     };
 
     fetchData();
-  }, [category]);
+  }, [id]);
 
   if (!product) {
     return <div>Loading...</div>;
@@ -51,7 +52,7 @@ const Category = ({ category }) => {
 };
 
 Category.propTypes = {
-  category: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default Category;
