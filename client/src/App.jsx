@@ -1,23 +1,32 @@
-import { useState, useEffect } from 'react'
-import Header from './Components/Header'
 
 
+import './index.css';
 
+import { useState } from 'react'
+import Products from './components/products'
+import {Route,Routes} from 'react-router-dom'
+
+import AddProducts from './components/AddProducts'
+import ProductDetails from './components/ProductDetails'
+import Cart from './components/Cart'
+import Checkout from './components/Checkout'
+import Homepage from './Components/HomePage/HomePage.jsx';
 function App() {
-  // const[branches, setBranches] = useState("")
-
-  useEffect(() => {
-    fetch("/branches")
-    .then((r) => r.json())
-    .then((branches) => console.log(branches))
-  }, [])
-  
-
   return (
+   
     <>
-    <Header/>
+    <Routes>
+      <Route path="/" element={<Homepage />} />
+      <Route path="/products" element={<Products />} />
+      <Route path="/checkout" element={<Checkout />} />
+      <Route path="/AddProducts" element={<AddProducts />} />
+      <Route path="/Details/:id" element={<ProductDetails />} />
+      <Route path="/cart" element={<Cart />} />
+      
+    </Routes>
+     
     </>
   )
 }
 
-export default App
+export default App;

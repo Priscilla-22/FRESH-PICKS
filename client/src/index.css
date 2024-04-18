@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+#display{
+    background-image: url('https://res.cloudinary.com/doifxgf1h/image/upload/v1713332231/GROCERY%20ITEMS/delicious-1_oephvs.avif');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height:70vh;
+   
+}
+#display-1{
+    opacity: 0.8;
+}
+#category{
+    background: #008800;
+}
