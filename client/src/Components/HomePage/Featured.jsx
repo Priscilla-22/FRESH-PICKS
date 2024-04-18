@@ -38,7 +38,7 @@ const Featured = () => {
                       📌
                       {product.name}
                     </h3>
-                    <p className='text-gray-600'>{product.price}</p>
+                    <p className='text-gray-600'>Ksh. {product.price}</p>
                   </div>
                 </div>
                 <p className='text-gray-600'>{product.description}</p>
