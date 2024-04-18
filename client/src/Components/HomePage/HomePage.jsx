@@ -3,6 +3,10 @@ import Hero from './Hero';
 import Featured from './Featured';
 import Categories from './Categories';
 import Testimonials from './Testimonials';
+<<<<<<< HEAD
+=======
+import CallToAction from './CallToAction';
+>>>>>>> 24d4364 (feat: initial homepage  structure)
 import Footer from './Footer';
 
 function HomePage() {
@@ -13,6 +17,10 @@ function HomePage() {
       <Featured />
       <Categories />
       <Testimonials />
+<<<<<<< HEAD
+=======
+      <CallToAction />
+>>>>>>> 24d4364 (feat: initial homepage  structure)
       <Footer />
     </div>
   );

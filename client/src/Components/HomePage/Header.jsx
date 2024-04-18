@@ -21,6 +21,7 @@ function Header() {
               </a>
             </li>
             <li>
+
               <a href='/cart' className='hover:underline'>
                 Cart
               </a>
@@ -33,6 +34,7 @@ function Header() {
             <li className='hidden md:flex'>
               {/* Hide on smaller screens */}
               <a href='/' className='hover:underline'>
+
                 About Us
               </a>
             </li>
