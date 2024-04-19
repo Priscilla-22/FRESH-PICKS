@@ -1,5 +1,5 @@
 from flask import Flask,request,make_response,jsonify,session
-from models import db,Product,Cart, Branch
+from models import db,Product,Cart, Branch, Customer
 from flask_migrate import Migrate
 from flask_restful import Api,Resource
 from flask_cors import CORS
@@ -171,6 +171,51 @@ class BranchByID(Resource):
         return response
     
 api.add_resource(BranchByID, '/branches/<int:id>')
+
+
+class CustomerResource(Resource):
+    def get(self, id=None):
+        if id:
+            customer = Customer.query.get(id)
+            if not customer:
+                return {'error': 'Customer not found'}, 404
+            return make_response(customer.to_dict(), 200)
+        else:
+            customers = Customer.query.all()
+            if not customers:
+                return {'error': 'There are no customers to display.'}, 404
+            return make_response([c.to_dict() for c in customers]), 200
+        
+    def post(self):
+        data = request.get_json()
+        new_customer = Customer(
+            username = data['username'],
+            email = data['email']
+        )
+
+        db.session.add(new_customer)
+        db.session.commit()
+        return {'success': 'Customer created successfully.'}, 201
+
+    def patch(self, id):
+        customer = Customer.query.filter_by(id=id).first()
+        if not customer:
+            return {'error': 'Customer not found.'}, 404
+        data = request.json
+        for key, value in data.items():
+            setattr(customer, key, value)
+        db.session.commit()
+        return {'success': 'Customer updated sucessfully.'}, 200    
+    
+    def delete(self, id):
+        customer = Customer.query.get(id)
+        if not customer:
+            return {'error':'Customer not found.'}, 404
+        db.session.delete(customer)
+        db.session.commit()
+        return {'success': 'Customer deleted successfully.'}, 204
+    
+api.add_resource(Customer, '/customers', '/customers/<int:id>')
 
 
 
