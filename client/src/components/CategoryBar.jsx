@@ -1,4 +1,6 @@
-function Category({ handleFilter}) { //handlefilter as prop
+import React from 'react'
+function Category({ handleFilter }) { //handlefilter as prop
+
 
     return (
       <div id="category" className="text-center w-full  opacity-75 mt-4">

@@ -1,3 +1,4 @@
+import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -33,23 +34,7 @@ const Testimonials = () => {
       name: 'Philip Wekullo',
       title: 'Marketing Manager',
       quote:
-        'I love how easy it is to use Fresh Picks. The website is intuitive and the selection of products is impress',
-      name: 'John Doe',
-      title: 'CEO of Acme Inc.',
-      quote: 'Fresh Picks has completely changed the way I do grocery shopping. The produce is always fresh and the delivery is fast and reliable.'
-    },
-    {
-      id: 2,
-      name: 'Jane Smith',
-      title: 'Marketing Manager',
-      quote: 'I love how easy it is to use Fresh Picks. The website is intuitive and the selection of products is impressive.'
-    },
-    {
-      id: 3,
-      name: 'Mike Johnson',
-      title: 'Software Engineer',
-      quote: 'I was skeptical at first, but Fresh Picks has won me over. The quality of the food is excellent and the convenience can\'t be beat.'
-
+        'I love how easy it is to use Fresh Picks. The website is intuitive and the selection of products is impress'
     }
   ];
 

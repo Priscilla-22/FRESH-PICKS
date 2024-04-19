@@ -1,3 +1,4 @@
+import React from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router-dom';
   function Header() {
@@ -13,51 +14,48 @@ import { Link } from 'react-router-dom';
         <nav>
           <ul className='flex space-x-4'>
             <li>
-              <a href='/' className='active hover:underline text-xl'>
+              <a href='/' className='active hover:underline text-lg'>
                 Home
               </a>
             </li>
             <li>
-              <a href='/products' className='hover:underline text-xl'>
+              <a href='/products' className='hover:underline text-lg'>
                 Products
               </a>
             </li>
             <li>
-
-              <a href='/cart' className='hover:underline text-xl'>
+              <a href='/cart' className='hover:underline text-lg'>
                 Cart
               </a>
             </li>
             <li>
-              <a href='/branches' className='hover:underline text-xl'>
+              <a href='/branches' className='hover:underline text-lg'>
                 Branches
               </a>
             </li>
             <li className='hidden md:flex'>
-            
-              <a href='/' className='hover:underline text-xl'>
-
+              <a href='/' className='hover:underline text-lg'>
                 About Us
               </a>
             </li>
           </ul>
         </nav>
         <div className='flex items-center space-x-4'>
-          
-          <a href='#' className='hover:underline'>
+          <a href='/login' className='hover:underline'>
             Login
           </a>
           <span>|</span>
-          <a href='#' className='hover:underline'>
+          <a href='/signup' className='hover:underline'>
             Sign Up
           </a>
         </div>
         <div className='shopping-cart'>
-        <Link className='relative' to='/cart'>
-          <ShoppingCartIcon fontSize='large'/>
-          <span className='rounded-full text-black p-1 w-2 h-2 bg-white'>0</span>
-        </Link>
-          
+          <Link className='relative' to='/cart'>
+            <ShoppingCartIcon fontSize='large' />
+            <span className='rounded-full text-black p-1 w-2 h-2 bg-white'>
+              0
+            </span>
+          </Link>
         </div>
       </div>
     </header>
