@@ -1,3 +1,4 @@
+import React from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router-dom';
   function Header() {
@@ -40,11 +41,11 @@ import { Link } from 'react-router-dom';
           </ul>
         </nav>
         <div className='flex items-center space-x-4'>
-          <a href='#' className='hover:underline'>
+          <a href='/login' className='hover:underline'>
             Login
           </a>
           <span>|</span>
-          <a href='#' className='hover:underline'>
+          <a href='/signup' className='hover:underline'>
             Sign Up
           </a>
         </div>

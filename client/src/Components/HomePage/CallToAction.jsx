@@ -1,4 +1,4 @@
-
+import React from 'react';
 function CallToAction() {
   return (
     <div className="bg-green-700 text-white py-16">

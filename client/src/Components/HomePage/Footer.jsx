@@ -1,4 +1,4 @@
-
+import React from 'react';
 function Footer() {
   return (
     <footer className="bg-green-700 text-white font-bold py-8">

@@ -1,4 +1,5 @@
-function Branch({name, location, image}){
+import React from 'react'
+function Branch({ name, location, image }) {
     return(
         <div className="max-w-sm rounded overflow-hidden shadow-lg">
             <img className="w-full object-cover" src={image} alt={name} />

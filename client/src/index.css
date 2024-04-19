@@ -1,28 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
 
 body::-webkit-scrollbar {
     display: none;
 }
 
-#display{
+#display {
     background-image: url('https://res.cloudinary.com/doifxgf1h/image/upload/v1713332231/GROCERY%20ITEMS/delicious-1_oephvs.avif');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    height:70vh;
-   
+    height: 70vh;
+
 }
-#display-1{
+
+#display-1 {
     opacity: 0.8;
 }
-#category{
+
+#category {
     background: #008800;
 }
-li a.active{
+
+li a.active {
     border-bottom: 2px solid #0a0c0a;
 }
