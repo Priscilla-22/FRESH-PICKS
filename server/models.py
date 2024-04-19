@@ -21,7 +21,7 @@ class Customer(db.Model, SerializerMixin):
     email = db.Column(db.String, unique=True, nullable=False)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
-
+    products=db.relationship('Product', back_populates="customers")
     def to_dict(self):
         return {
             'id': self.id,
@@ -31,10 +31,8 @@ class Customer(db.Model, SerializerMixin):
     
     def __repr__(self):
         return f'<Customer {self.username} created.>'
-class Customer(db.Model):
-    __tablename__ = 'customers'
-    id = db.Column(db.Integer(), primary_key=True)
-    products=db.relationship('Product', back_populates="customers")
+
+    
 
 class Product(db.Model, SerializerMixin):
     __tablename__ = 'products'
