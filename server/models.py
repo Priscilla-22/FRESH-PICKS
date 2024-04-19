@@ -72,13 +72,6 @@ class Cart(db.Model,SerializerMixin):
     product_id=db.Column(db.Integer(),db.ForeignKey('products.id'))
     
 
-            
-    
-class Customer(db.Model):
-    __tablename__ = 'customers'
-    id = db.Column(db.Integer(), primary_key=True)
-    products=db.relationship('Product', back_populates="customers")
-
 class Product(db.Model, SerializerMixin):
     __tablename__ = 'products'
     serialize_only=('id', 'name', 'price', 'description', 'reviews', 'category', 'image')
