@@ -11,7 +11,7 @@ import Checkout from './components/Checkout'
 import Homepage from './Components/HomePage/HomePage.jsx';
 function App() {
   return (
-    <Router>
+  
       <main>
         <Routes>
           <Route path="/" element={<Homepage />} />
@@ -25,7 +25,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />        
         </Routes>      
       </main>
-    </Router>
+    
    
   )
 }
