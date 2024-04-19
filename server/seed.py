@@ -2,6 +2,7 @@ from app import app
 from models import Customer, Product, db
 
 with app.app_context():
+    db.create_all()
     # Delete all rows in all tables
     print('Deleting rows...')
 
