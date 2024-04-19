@@ -1,5 +1,5 @@
 from flask import Flask,request,make_response,jsonify,session
-from models import db,Product,Cart, Branch
+from models import db,Product,Cart, Branch,Customer
 from flask_migrate import Migrate
 from flask_restful import Api,Resource
 from flask_cors import CORS
@@ -16,25 +16,47 @@ migrate=Migrate(app,db)
 db.init_app(app)
 
 
-
 @app.route('/')
 def home():
     return "<h1>Welcome to group C api</h1>"
 
+
+class CheckSession(Resource):
+
+    def get(self):
+        user = Customer.query.filter(Customer.id == session.get("user_id")).first()
+        if user:
+            return user.to_dict()
+        else:
+            return {"message": "401: Not Authorized"}, 401
+
+
+api.add_resource(CheckSession, "/check_session")
+
+class Login(Resource):
+
+    def post(self):
+        user = Customer.query.filter(
+            Customer.username == request.get_json()["username"]
+        ).first()
+
+        session["user_id"] = user.id
+        return user.to_dict()
+
+
 class Products(Resource):
     def get(self):
-        product=[products.to_dict() for products in Product.query.all()]
-        response= make_response(
-            jsonify(product),
-            200
-        )
-        return response
+        products = Product.query.all()
+        product_data = [product.to_dict() for product in products]  # Convert each product to a dictionary
+        
+        return product_data, 200 
+    
     def post(self):
         data = request.get_json()
         # user_id = session.get('user_id')
         # if not user_id:
         #     return jsonify({"message": "Please login to continue"}), 401
-        
+
         new_product = Product(
             name=data.get('name'),
             price=data.get('price'),
@@ -42,60 +64,57 @@ class Products(Resource):
             reviews=data.get('reviews'),
             category=data.get('category'),
             image=data.get('image'),
-              # Assign user_id from session
+          # Assign user_id from session
         )
         db.session.add(new_product)
         db.session.commit()
         return jsonify({"message": "Product added successfully"}), 201
-        
 class ProductsId(Resource):
-    def get(self,id):
-        product=Product.query.filter_by(id=id).first()
-        response= make_response(
-            jsonify(product.to_dict()),
-            200
-        )
-        return response
-    def patch(self, id):
-
-        review = Product.query.filter_by(id=id).first()
-        for attr in request.form:
-            setattr(review, attr, request.form[attr])
-
-        db.session.add(review)
-        db.session.commit()
-
-        response_dict = review.to_dict()
-
-        response = make_response(
-            response_dict,
-            200
-        )
-
-        return response
-class Carts(Resource):
-    def get(self): 
-        cart_items=[item.to_dict() for item in Cart.query.all()]
-        if cart_items:
-            
-            return jsonify(cart_items)
+    def get(self, id):
+        product = Product.query.filter_by(id=id).first()
+        if product:
+            return jsonify(product.to_dict()), 200
         else:
-            return jsonify({}), 404
+            return jsonify({"message": "Product not found"}), 404
+
+    def patch(self, id):
+        review = Product.query.filter_by(id=id).first()
+        if review:
+            for attr in request.form:
+                setattr(review, attr, request.form[attr])
+
+            db.session.commit()
+
+            response_dict = review.to_dict()
+            return jsonify(response_dict), 200
+        else:
+            return jsonify({"message": "Product not found"}), 404
+
+
+class Carts(Resource):
+    def get(self):
+        cart_items = [item.to_dict() for item in Cart.query.all()]
+        if cart_items:
+            return cart_items, 200
+        else:
+            return {"message": "Cart is empty"}, 404
 
     def post(self):
         data = request.get_json()
         cart_item = Cart(
-            product_id=data.get('product_id'),
-            name=data.get('name'),
-            price=data.get('price'),
-            image=data.get('image'),
+            product_id=data.get("product_id"),
+            name=data.get("name"),
+            price=data.get("price"),
+            image=data.get("image"),
+            total=data.get("total"),
             # customer_id=session.get('user_id')
         )
         db.session.add(cart_item)
         db.session.commit()
-        
-        return jsonify({"message": "Cart added successfully"}), 201
-        
+
+        return {"message": "Item added to cart successfully"}, 201
+
+
 class CartsId(Resource):
     def delete(self, id):
         print(id)  
@@ -107,9 +126,7 @@ class CartsId(Resource):
         else:
             return jsonify({"message": "Item not found"}), 404
 
-            
-        
-    
+
 api.add_resource(Products,'/products', endpoint="/products")
 api.add_resource(ProductsId,'/products/<int:id>',endpoint="/products/<int:id>")
 api.add_resource(Carts,'/cart',endpoint="/cart")
@@ -169,10 +186,8 @@ class BranchByID(Resource):
             200
         )
         return response
-    
+
 api.add_resource(BranchByID, '/branches/<int:id>')
-
-
 
 
 if __name__ == '__main__':

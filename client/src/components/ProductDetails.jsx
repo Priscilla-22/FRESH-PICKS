@@ -15,38 +15,63 @@ function ProductDetails() {
         review:''
     })
     const product = currentProduct.state?.product;
-    const navigate= useNavigate()
-    function AddCart(product) {
-        if (!product) {
-            console.error('No product data provided');
-            return;
-        }
-        setLoading(true);
-        const productData = {
-            product_id: product.id,
-            name: product.name,
-            price: product.price,
-            image: product.image,
-            // Add other necessary properties here
-        };
-    
-        fetch(`http://127.0.0.1:5555/cart`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(productData) // Pass the new object without circular references
-        }).then(res => res.json())
-        .then(data => {
-            console.log('Product added:', data);
-            toast.success("Product added successfully", {position:'top-center'});
-        }).catch(error => {
-            console.error('Error adding product to cart:', error);
-            toast.error("Error adding product to cart", {position:'top-center'});
-        });
-        navigate("/cart")
-        
+    const navigate = useNavigate()
+  function AddCart(product) {
+    if (!product) {
+      console.error('No product data provided');
+      return;
     }
+    setLoading(true);
+    const productData = {
+      product_id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+    };
+
+    fetch(`http://127.0.0.1:5555/cart`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(productData),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw new Error('Failed to add product to cart');
+        }
+      })
+      .then((data) => {
+        console.log('Product added:', data);
+        toast.success('Product added successfully', { position: 'top-center' });
+        // Fetch the updated cart data and display it on the current page
+        fetchUpdatedCartData();
+        // Navigate to the cart page after successful addition
+        navigate('/cart');
+      })
+      .catch((error) => {
+        console.error('Error adding product to cart:', error);
+        toast.error('Error adding product to cart', { position: 'top-center' });
+        setLoading(false); // Reset loading state on error
+      });
+  }
+
+
+    function fetchUpdatedCartData() {
+    fetch('http://127.0.0.1:5555/cart')
+        .then(res => res.json())
+        .then(data => {
+            console.log('Updated cart data:', data);
+            // Display the updated cart data on the current page
+            // ...
+        })
+        .catch(error => {
+            console.error('Error fetching updated cart data:', error);
+        });
+    }
+    
     function handleChange(event){
         setReview(event.target.value)
     }

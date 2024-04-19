@@ -3,6 +3,7 @@ import Category from './CategoryBar';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Components/HomePage/Header';
 import Footer from '../Components/HomePage/Footer';
+import { toast } from 'react-toastify';
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
@@ -21,32 +22,31 @@ function Cart() {
       );
   }, []);
 
-  function handleRemoveFromCart(itemId) {
-    // Change parameter name to itemId
-    fetch(`http://127.0.0.1:5555/cart/${itemId}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => {
-        console.log(res);
-        if (!res.ok) {
-          throw new Error('Failed to remove item from cart');
-        }
-        return res.json();
-      })
-      .then((data) => {
-        setCartItems(cartItems.filter((item) => item.id !== itemId)); // Change id to itemId
-        toast.info('Successfully removed item from cart', {
-          position: 'bottom-left',
-        });
-      })
-      .catch((error) => {
-        setError(error.message);
+function handleRemoveFromCart(itemId) {
+  fetch(`http://127.0.0.1:5555/cart/${itemId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error('Failed to remove item from cart');
+      }
+      // Update the state immediately after successful removal from server
+      setCartItems((prevCartItems) =>
+        prevCartItems.filter((item) => item.id !== itemId)
+      );
+      toast.info('Successfully removed item from cart', {
+        position: 'bottom-left',
       });
-    window.location.reload();
-  }
+    })
+    .catch((error) => {
+      setError(error.message);
+    });
+}
+
+
   function handleCheckOut() {
     navigate(`/checkout`, { state: cartItems });
   }
