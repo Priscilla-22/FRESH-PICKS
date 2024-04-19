@@ -10,7 +10,7 @@ app=Flask(__name__)
 CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+secret_key=b'\xdbL\xcfMV\xac\x884\xd9\xfe1\xcd\xda\xef\xeaW'
 api=Api(app)
 
 CORS(app)
