@@ -5,7 +5,7 @@ import './index.css';
 import { useState } from 'react'
 import Products from './components/products'
 import {Route,Routes} from 'react-router-dom'
-
+import Branches from './components/Branches.jsx';
 import AddProducts from './components/AddProducts'
 import ProductDetails from './components/ProductDetails'
 import Cart from './components/Cart'
@@ -22,6 +22,7 @@ function App() {
       <Route path="/AddProducts" element={<AddProducts />} />
       <Route path="/Details/:id" element={<ProductDetails />} />
       <Route path="/cart" element={<Cart />} />
+      <Route path="/branches" element={<Branches/>}/>
       
     </Routes>
      
