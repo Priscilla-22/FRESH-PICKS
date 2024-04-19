@@ -1,7 +1,8 @@
 import React from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router-dom';
-  function Header() {
+import Person2Icon from '@mui/icons-material/Person2';
+function Header() {
   return (
     <header className='bg-green-700 text-white py-4'>
       <div className='container mx-auto flex justify-between items-center'>
@@ -42,8 +43,10 @@ import { Link } from 'react-router-dom';
         </nav>
         <div className='flex items-center space-x-4'>
           <a href='/login' className='hover:underline'>
+            <Person2Icon />
             Login
           </a>
+
           <span>|</span>
           <a href='/signup' className='hover:underline'>
             Sign Up
