@@ -19,7 +19,7 @@ db.init_app(app)
 
 @app.route('/')
 def home():
-    return "<h1>Welcome to group C api</h1>"
+    return "<h1>FRESH PICKS API</h1>"
 
 class Products(Resource):
     def get(self):
