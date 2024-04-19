@@ -20,6 +20,8 @@ db.init_app(app)
 def home():
     return "<h1>Welcome to group C api</h1>"
 
+
+
 class Products(Resource):
     def get(self):
         product=[products.to_dict() for products in Product.query.all()]
