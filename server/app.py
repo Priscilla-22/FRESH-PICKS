@@ -179,12 +179,12 @@ class CustomerResource(Resource):
             customer = Customer.query.get(id)
             if not customer:
                 return {'error': 'Customer not found'}, 404
-            return make_response(customer.to_dict(), 200)
+            return customer.to_dict(), 200
         else:
             customers = Customer.query.all()
             if not customers:
                 return {'error': 'There are no customers to display.'}, 404
-            return make_response([c.to_dict() for c in customers]), 200
+            return make_response(jsonify([c.to_dict() for c in customers]), 200)
         
     def post(self):
         data = request.get_json()
@@ -202,8 +202,8 @@ class CustomerResource(Resource):
         if not customer:
             return {'error': 'Customer not found.'}, 404
         data = request.json
-        for key, value in data.items():
-            setattr(customer, key, value)
+        for attr in request.form():
+            setattr(customer, attr, request.form[attr])
         db.session.commit()
         return {'success': 'Customer updated sucessfully.'}, 200    
     
@@ -215,7 +215,7 @@ class CustomerResource(Resource):
         db.session.commit()
         return {'success': 'Customer deleted successfully.'}, 204
     
-api.add_resource(Customer, '/customers', '/customers/<int:id>')
+api.add_resource(CustomerResource, '/customers', '/customers/<int:id>')
 
 
 
