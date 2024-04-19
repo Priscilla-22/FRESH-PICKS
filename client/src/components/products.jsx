@@ -48,7 +48,7 @@ const [selectedCategory,setSelectedCategory] = useState(null)
         <Header/>
          <div className='block align-middle justify-center'>
 
-            <h1>Products available in Market</h1>
+            <h1 className='text-center text-2xl'>Products available in Market</h1>
             <SearchBar HandleChange={HandleChange} value={input}/>
             <Category handleFilter={handleClick}/>
             <div className='flex flex-wrap text-center'>
