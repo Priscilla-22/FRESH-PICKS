@@ -20,6 +20,9 @@ db.init_app(app)
 @app.route('/')
 def home():
     return "<h1>Welcome to group C api</h1>"
+@app.route('/session')
+def session():
+    return session.get('user_id')
 
 class Products(Resource):
     def get(self):
