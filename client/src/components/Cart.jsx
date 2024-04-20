@@ -33,7 +33,6 @@ function handleRemoveFromCart(itemId) {
       if (!res.ok) {
         throw new Error('Failed to remove item from cart');
       }
-      // Update the state immediately after successful removal from server
       setCartItems((prevCartItems) =>
         prevCartItems.filter((item) => item.id !== itemId)
       );
@@ -54,7 +53,7 @@ function handleRemoveFromCart(itemId) {
   return (
     <>
       <Header />
-      <Category />
+      {/* <Category /> */}
       <div className='container mx-auto mt-8'>
         <h1 className='text-center text-3xl text-green-600 font-bold'>Cart</h1>
         {/* {error && (

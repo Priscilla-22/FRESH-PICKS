@@ -1,20 +1,25 @@
-import React from 'react'
-import { Box } from '@mui/material'
-import { Link } from 'react-router-dom'
-import ProductDetails from './ProductDetails'
-import { useNavigate } from 'react-router-dom'
-function ProductList({name,price,image,showbutton,handleMouseEnter,handleMouseLeave,product}) {
-   
-    
-  const navigate=useNavigate()
-const handleOpen = () =>{
-   
-    navigate(`/Details/${product.id}`, { state: { product } })
-};
+import React from 'react';
+import { Box } from '@mui/material';
+import { Link } from 'react-router-dom';
+import ProductDetails from './ProductDetails';
+import { useNavigate } from 'react-router-dom';
+function ProductList({
+  name,
+  price,
+  image,
+  showbutton,
+  handleMouseEnter,
+  handleMouseLeave,
+  product,
+}) {
+  const navigate = useNavigate();
+  const handleOpen = () => {
+    navigate(`/Details/${product.id}`, { state: { product } });
+  };
   return (
     <div>
       <Box
-        className='box  hover:shadow-md px-4 py-4 w-64 mx-auto relative mb-2 border border-gray-100 rounded-lg ml-1' 
+        className='box  hover:shadow-md px-4 py-4 w-64 mx-auto relative mb-2 border border-gray-100 rounded-lg ml-1'
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -38,4 +43,4 @@ const handleOpen = () =>{
   );
 }
 
-export default ProductList
+export default ProductList;

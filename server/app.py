@@ -1,22 +1,22 @@
-from flask import Flask,request,make_response,jsonify,session
-from models import db,Product,Cart, Branch,Customer
+from flask import Flask, request, make_response, jsonify, session
+from models import db, Product, Cart, Branch, Customer
 from flask_migrate import Migrate
-from flask_restful import Api,Resource
+from flask_restful import Api, Resource
 from flask_cors import CORS
 import os
 
-app=Flask(__name__)
+app = Flask(__name__)
 CORS(app)
-app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///app.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-secret_key=b'\xdbL\xcfMV\xac\x884\xd9\xfe1\xcd\xda\xef\xeaW'
-api=Api(app)
-migrate=Migrate(app,db)
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///app.db"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+secret_key = b"\xdbL\xcfMV\xac\x884\xd9\xfe1\xcd\xda\xef\xeaW"
+api = Api(app)
+migrate = Migrate(app, db)
 
 db.init_app(app)
 
 
-@app.route('/')
+@app.route("/")
 def home():
     return "<h1>Welcome to group C api</h1>"
 
@@ -33,6 +33,7 @@ class CheckSession(Resource):
 
 api.add_resource(CheckSession, "/check_session")
 
+
 class Login(Resource):
 
     def post(self):
@@ -47,10 +48,12 @@ class Login(Resource):
 class Products(Resource):
     def get(self):
         products = Product.query.all()
-        product_data = [product.to_dict() for product in products]  # Convert each product to a dictionary
-        
-        return product_data, 200 
-    
+        product_data = [
+            product.to_dict() for product in products
+        ]  # Convert each product to a dictionary
+
+        return product_data, 200
+
     def post(self):
         data = request.get_json()
         # user_id = session.get('user_id')
@@ -58,17 +61,19 @@ class Products(Resource):
         #     return jsonify({"message": "Please login to continue"}), 401
 
         new_product = Product(
-            name=data.get('name'),
-            price=data.get('price'),
-            description=data.get('description'),
-            reviews=data.get('reviews'),
-            category=data.get('category'),
-            image=data.get('image'),
-          # Assign user_id from session
+            name=data.get("name"),
+            price=data.get("price"),
+            description=data.get("description"),
+            reviews=data.get("reviews"),
+            category=data.get("category"),
+            image=data.get("image"),
+            # Assign user_id from session
         )
         db.session.add(new_product)
         db.session.commit()
         return jsonify({"message": "Product added successfully"}), 201
+
+
 class ProductsId(Resource):
     def get(self, id):
         product = Product.query.filter_by(id=id).first()
@@ -117,7 +122,7 @@ class Carts(Resource):
 
 class CartsId(Resource):
     def delete(self, id):
-        print(id)  
+        print(id)
         item = Cart.query.filter_by(id=id).first()
         if item:
             db.session.delete(item)
@@ -127,10 +132,11 @@ class CartsId(Resource):
             return jsonify({"message": "Item not found"}), 404
 
 
-api.add_resource(Products,'/products', endpoint="/products")
-api.add_resource(ProductsId,'/products/<int:id>',endpoint="/products/<int:id>")
-api.add_resource(Carts,'/cart',endpoint="/cart")
-api.add_resource(CartsId,'/cart/<int:id>',endpoint="/cart/<int:id>")
+api.add_resource(Products, "/products", endpoint="/products")
+api.add_resource(ProductsId, "/products/<int:id>", endpoint="/products/<int:id>")
+api.add_resource(Carts, "/cart", endpoint="/cart")
+api.add_resource(CartsId, "/cart/<int:id>", endpoint="/cart/<int:id>")
+
 
 class Branches(Resource):
     def get(self):
@@ -138,11 +144,10 @@ class Branches(Resource):
 
         response = make_response(response_dict_list, 200)
         return response
-    
+
     def post(self):
         new_branch = Branch(
-            name = request.form['name'],
-            location = request.form['location']
+            name=request.form["name"], location=request.form["location"]
         )
 
         db.session.add(new_branch)
@@ -153,7 +158,8 @@ class Branches(Resource):
 
         return response
 
-api.add_resource(Branches, '/branches')
+
+api.add_resource(Branches, "/branches")
 
 
 class BranchByID(Resource):
@@ -162,7 +168,7 @@ class BranchByID(Resource):
 
         response = make_response(response_dict, 200)
         return response
-    
+
     def patch(self, id):
         branch = Branch.query.filter(Branch.id == id).first()
 
@@ -174,20 +180,18 @@ class BranchByID(Resource):
 
         response = make_response(branch.to_dict, 200)
         return response
-    
+
     def delete(self, id):
         branch = Branch.query.filter(Branch.id == id).first()
 
         db.session.delete(branch)
         db.session.commit()
 
-        response = make_response(
-            {"message": f"Branch {id} was closed"},
-            200
-        )
+        response = make_response({"message": f"Branch {id} was closed"}, 200)
         return response
 
-api.add_resource(BranchByID, '/branches/<int:id>')
+
+api.add_resource(BranchByID, "/branches/<int:id>")
 
 
 class CustomerResource(Resource):
@@ -195,48 +199,43 @@ class CustomerResource(Resource):
         if id:
             customer = Customer.query.get(id)
             if not customer:
-                return {'error': 'Customer not found'}, 404
+                return {"error": "Customer not found"}, 404
             return customer.to_dict(), 200
         else:
             customers = Customer.query.all()
             if not customers:
-                return {'error': 'There are no customers to display.'}, 404
+                return {"error": "There are no customers to display."}, 404
             return make_response(jsonify([c.to_dict() for c in customers]), 200)
-        
+
     def post(self):
         data = request.get_json()
-        new_customer = Customer(
-            username = data['username'],
-            email = data['email']
-        )
+        new_customer = Customer(username=data["username"], email=data["email"])
 
         db.session.add(new_customer)
         db.session.commit()
-        return {'success': 'Customer created successfully.'}, 201
+        return {"success": "Customer created successfully."}, 201
 
     def patch(self, id):
         customer = Customer.query.filter_by(id=id).first()
         if not customer:
-            return {'error': 'Customer not found.'}, 404
+            return {"error": "Customer not found."}, 404
         data = request.json
         for attr in request.form():
             setattr(customer, attr, request.form[attr])
         db.session.commit()
-        return {'success': 'Customer updated sucessfully.'}, 200    
-    
+        return {"success": "Customer updated sucessfully."}, 200
+
     def delete(self, id):
         customer = Customer.query.get(id)
         if not customer:
-            return {'error':'Customer not found.'}, 404
+            return {"error": "Customer not found."}, 404
         db.session.delete(customer)
         db.session.commit()
-        return {'success': 'Customer deleted successfully.'}, 204
-    
-api.add_resource(CustomerResource, '/customers', '/customers/<int:id>')
+        return {"success": "Customer deleted successfully."}, 204
 
 
+api.add_resource(CustomerResource, "/customers", "/customers/<int:id>")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(port=5555, debug=True)
-

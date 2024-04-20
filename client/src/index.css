@@ -24,9 +24,9 @@ body::-webkit-scrollbar {
     opacity: 0.8;
 }
 
-#category {
+/* #category {
     background: #008800;
-}
+} */
 
 li a.active {
     border-bottom: 2px solid #0a0c0a;
