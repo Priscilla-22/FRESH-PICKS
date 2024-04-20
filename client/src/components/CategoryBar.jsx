@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function Category({ handleFilter }) {
+  const [activeCategory, setActiveCategory] = useState(null);
+
+  const handleClick = (category) => {
+    if (activeCategory !== category) {
+      handleFilter(category);
+      setActiveCategory(category);
+    }
+  };
+
   return (
     <div
       id='category'
@@ -14,49 +23,63 @@ function Category({ handleFilter }) {
         />
         <button
           onClick={() => window.location.reload()}
-          className='w-full py-3 font-bold text-xl text-gray-800 hover:bg-gray-200 rounded'
+          className={`w-full py-3 font-bold text-xl text-gray-800 rounded ${
+            activeCategory === null ? 'bg-gray-200' : 'hover:bg-gray-200'
+          }`}
         >
           Shop
         </button>
         <hr className='border-gray-300' />
         <button
-          onClick={() => handleFilter('fruits')}
-          className='w-full py-3 font-bold text-lg text-gray-800 hover:bg-gray-200 rounded'
+          onClick={() => handleClick('fruits')}
+          className={`w-full py-3 font-bold text-lg text-gray-800 rounded ${
+            activeCategory === 'fruits' ? 'bg-gray-200' : 'hover:bg-gray-200'
+          }`}
         >
           Fruits
         </button>
         <hr className='border-gray-300' />
         <button
-          onClick={() => handleFilter('Dairy')}
-          className='w-full py-3 font-bold text-lg text-gray-800 hover:bg-gray-200 rounded'
+          onClick={() => handleClick('Dairy')}
+          className={`w-full py-3 font-bold text-lg text-gray-800 rounded ${
+            activeCategory === 'Dairy' ? 'bg-gray-200' : 'hover:bg-gray-200'
+          }`}
         >
           Dairy
         </button>
         <hr className='border-gray-300' />
         <button
-          onClick={() => handleFilter('Veggies')}
-          className='w-full py-3 font-bold text-lg text-gray-800 hover:bg-gray-200 rounded'
+          onClick={() => handleClick('Veggies')}
+          className={`w-full py-3 font-bold text-lg text-gray-800 rounded ${
+            activeCategory === 'Veggies' ? 'bg-gray-200' : 'hover:bg-gray-200'
+          }`}
         >
           Veggies
         </button>
         <hr className='border-gray-300' />
         <button
-          onClick={() => handleFilter('meat')}
-          className='w-full py-3 font-bold text-lg text-gray-800 hover:bg-gray-200 rounded'
+          onClick={() => handleClick('meat')}
+          className={`w-full py-3 font-bold text-lg text-gray-800 rounded ${
+            activeCategory === 'meat' ? 'bg-gray-200' : 'hover:bg-gray-200'
+          }`}
         >
           Meat
         </button>
         <hr className='border-gray-300' />
         <button
-          onClick={() => handleFilter('Nuts')}
-          className='w-full py-3 font-bold text-lg text-gray-800 hover:bg-gray-200 rounded'
+          onClick={() => handleClick('Nuts')}
+          className={`w-full py-3 font-bold text-lg text-gray-800 rounded ${
+            activeCategory === 'Nuts' ? 'bg-gray-200' : 'hover:bg-gray-200'
+          }`}
         >
           Nuts
         </button>
         <hr className='border-gray-300' />
         <button
-          onClick={() => handleFilter('Cereals')}
-          className='w-full py-3 font-bold text-lg text-gray-800 hover:bg-gray-200 rounded'
+          onClick={() => handleClick('Cereals')}
+          className={`w-full py-3 font-bold text-lg text-gray-800 rounded ${
+            activeCategory === 'Cereals' ? 'bg-gray-200' : 'hover:bg-gray-200'
+          }`}
         >
           Cereals
         </button>
