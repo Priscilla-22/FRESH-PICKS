@@ -1,5 +1,3 @@
-
-
 # Fresh Picks - Grocery Delivery Web App
 
 Welcome to Fresh Picks - your one-stop solution for convenient and fresh grocery delivery! This README will guide you through our app, its features, the problem it solves, our dedicated team, database structure, and how to get started.
@@ -24,6 +22,7 @@ In the bustling world of Fresh Picks, a new company with numerous branches, the 
 ## Solution Statement
 
 Fresh Picks has the answer - a robust web application designed to:
+
 - Simplify branch management for the Fresh Picks team.
 - Provide consumers with an easy-to-use platform to order fresh groceries remotely.
 - Seamlessly integrate a reliable delivery system to bring groceries straight to customers' doorsteps.
@@ -31,6 +30,7 @@ Fresh Picks has the answer - a robust web application designed to:
 ## Grocery Store Features Ideas
 
 Our vision for Fresh Picks includes a range of features tailored to enhance the shopping experience:
+
 - **User-friendly Interface**: From tech-savvy individuals to those less familiar with online shopping, our app offers an intuitive and easy-to-navigate interface.
 - **Comprehensive Product Catalog**: Dive into our extensive catalog featuring various categories and subcategories, ensuring you find exactly what you need.
 - **Robust Search and Filter**: With powerful search and filter options, locating products by price, brand, dietary preferences, and more is a breeze.
@@ -43,20 +43,20 @@ Our vision for Fresh Picks includes a range of features tailored to enhance the 
 ## Features
 
 Fresh Picks is packed with features to enhance your shopping experience:
-1. **Navbar**: Navigate seamlessly between different sections of the app.
-2. **Login Page**: Secure access for registered users.
-3. **Registration Page**: New to Fresh Picks? Sign up easily with our registration form.
-4. **Cart**: Manage your selected items before proceeding to checkout.
-5. **API**: A robust backend API ensures smooth data exchange for a seamless experience.
-6. **Categories**: Organize products neatly into categories for easy browsing.
-7. **Side Nav**: Access additional features conveniently from the side navigation menu.
-8. **Feedback and Ratings**: Share your experiences by leaving feedback and ratings for products.
-9. **Payment**: Securely process your payments within the app.
-10. *(Add more features as you develop them)*
+
+- Navbar: Navigate seamlessly between different sections of the app.
+- Login Page: Secure access for registered userRegistration Page\*\*: New to Fresh Picks? Sign up easily with our registration form.
+- Cart: Manage your selected items before proceeding to checkout.
+- API: A robust backend API ensures smooth data exchange for a seamless experience.
+- Categories\*\*: Organize products neatly into categories for easy browsing.
+- Side Nav: Access additional features conveniently from the side navigation menu.
+- Feedback and Ratings: Share your experiences by leaving feedback and ratings for products.
+- Payment: Securely process your payments within the app.
 
 ## Team Members
 
 Meet the dedicated minds behind Fresh Picks:
+
 - **Priscilla Wakahia** - [![GitHub Link](https://img.shields.io/badge/GitHub-Priscilla--22-blue?style=flat&logo=github)](https://github.com/Priscilla-22)
 - **Victor Muteithia** - [![GitHub Link](https://img.shields.io/badge/GitHub-victormuteithia-blue?style=flat&logo=github)](https://github.com/victormuteithia)
 - **Simon Mwangi** - [![GitHub Link](https://img.shields.io/badge/GitHub-SIMON--KANGI-blue?style=flat&logo=github)](https://github.com/SIMON-KANGI)
@@ -66,22 +66,24 @@ Meet the dedicated minds behind Fresh Picks:
 
 You can view the database diagram [here](https://dbdiagram.io/d/FRESH-PICKS-661f182403593b6b612c71d5).
 
-
 ## Getting Started
 
 Ready to embark on your Fresh Picks journey? Follow these simple steps:
 
 1. **Clone the Repository**:
+
    ```bash
    git clone https://github.com/your/fresh-picks.git
    ```
 
 2. **Install Dependencies**:
+
    ```bash
    npm install
    ```
 
 3. **Run the Development Server**:
+
    ```bash
    npm start
    ```
