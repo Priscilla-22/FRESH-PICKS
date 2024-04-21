@@ -1,29 +1,102 @@
 from flask import Flask,request,make_response,jsonify,session
-from models import db,Product,Cart
-from flask_migrate import Migrate
+from models import Product,Cart,Customer,Branch
+
 from flask_restful import Api,Resource
 from flask_cors import CORS
+from config import app,db
 import os
 
-app=Flask(__name__)
-CORS(app)
-app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///app.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-secret_key=b'\xdbL\xcfMV\xac\x884\xd9\xfe1\xcd\xda\xef\xeaW'
+
 api=Api(app)
-migrate=Migrate(app,db)
-
-db.init_app(app)
-
-
 
 @app.route('/')
 def home():
     return "<h1>Welcome to group C api</h1>"
-@app.route('/session')
-def session():
-    return session.get('user_id')
 
+
+
+
+
+class CustomerResource(Resource):
+    def get(self, id=None):
+        if id:
+            customer = Customer.query.get(id)
+            if not customer:
+                return {'error': 'Customer not found'}, 404
+            return jsonify(customer.to_dict()), 200
+        else:
+            customers = Customer.query.all()
+            if not customers:
+                return {'error': 'There are no customers to display.'}, 404
+            return make_response(jsonify([c.to_dict() for c in customers]), 200)
+        
+    def post(self):
+        data = request.get_json()
+        new_customer = Customer(
+            username = data['username'],
+            email = data['email'],
+            password = data['password']
+           
+        )
+
+        db.session.add(new_customer)
+        db.session.commit()
+        return {'success': 'Customer created successfully.'}, 201
+
+    def patch(self, id):
+        customer = Customer.query.filter_by(id=id).first()
+        if not customer:
+            return {'error': 'Customer not found.'}, 404
+        data = request.json
+        for attr in request.form():
+            setattr(customer, attr, request.form[attr])
+        db.session.commit()
+        return {'success': 'Customer updated sucessfully.'}, 200    
+    
+    def delete(self, id):
+        customer = Customer.query.get(id)
+        if not customer:
+            return {'error':'Customer not found.'}, 404
+        db.session.delete(customer)
+        db.session.commit()
+        return {'success': 'Customer deleted successfully.'}, 204
+    
+api.add_resource(CustomerResource, '/customers', '/customers/<int:id>')
+
+class Login(Resource):
+
+    def post(self):
+        data = request.get_json()
+        if "username" not in data or "password" not in data:
+            return {"message": "Username and password are required"}, 400
+
+        username = data["username"]
+        password = data["password"]
+        
+        user = Customer.query.filter_by(username=username).first()
+
+        if not user or not user.check_password(password):
+            return {"message": "Invalid username or password"}, 401
+
+        session['user_id'] = user.id
+        return user.to_dict(), 200
+
+api.add_resource(Login, '/login')
+
+class CheckSession(Resource):
+
+    def get(self):
+        user = Customer.query.filter(Customer.id == session.get('user_id')).first()
+        if user:
+            return user.to_dict()
+        else:
+            return {'message': '401: Not Authorized'}, 401
+
+api.add_resource(CheckSession, '/check_session')
+
+
+
+    
 class Products(Resource):
     def get(self):
         product=[products.to_dict() for products in Product.query.all()]
@@ -47,7 +120,7 @@ class Products(Resource):
             image=data.get('image'),
               # Assign user_id from session
         )
-        db.session.add(new_product)
+        db.session.add(jsonify(new_product))
         db.session.commit()
         return jsonify({"message": "Product added successfully"}), 201
         
@@ -101,17 +174,69 @@ class Carts(Resource):
         
 class CartsId(Resource):
     def delete(self, id):
-        print(id)  
-        item = Cart.query.filter_by(id=id).first()
+        print(id)  # Debugging
+        item = Cart.query.get(id)
         if item:
             db.session.delete(item)
             db.session.commit()
             return jsonify({"message": "Item deleted successfully"}), 200
         else:
             return jsonify({"message": "Item not found"}), 404
-
             
-        
+class Branches(Resource):
+    def get(self):
+        response_dict_list = [branch.to_dict() for branch in Branch.query.all()]
+
+        response = make_response(response_dict_list, 200)
+        return response
+    
+    def post(self):
+        new_branch = Branch(
+            name = request.form['name'],
+            location = request.form['location']
+        )
+
+        db.session.add(new_branch)
+        db.session.commit()
+
+        response_dict = new_branch.to_dict()
+        response = make_response(response_dict, 201)
+
+        return response
+class BranchByID(Resource):
+    def get(self, id):
+        response_dict = Branch.query.filter(Branch.id == id).first().to_dict()
+
+        response = make_response(response_dict, 200)
+        return response
+    
+    def patch(self, id):
+        branch = Branch.query.filter(Branch.id == id).first()
+
+        for attr in request.form:
+            setattr(branch, attr, request.form[attr])
+
+        db.session.add(branch)
+        db.session.commit()
+
+        response = make_response(branch.to_dict, 200)
+        return response
+    
+    def delete(self, id):
+        branch = Branch.query.filter(Branch.id == id).first()
+
+        db.session.delete(branch)
+        db.session.commit()
+
+        response = make_response(
+            {"message": f"Branch {id} was closed"},
+            200
+        )
+        return response
+
+api.add_resource(BranchByID, '/branches/<int:id>')
+api.add_resource(Branches, '/branches')
+       
     
 api.add_resource(Products,'/products', endpoint="/products")
 api.add_resource(ProductsId,'/products/<int:id>',endpoint="/products/<int:id>")
