@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
+import { useNavigate } from 'react-router-dom'
 
 
 const Signup = () => {
-    const [refreshPage, setRefreshPage] = useState(false)
+    const navigate = useNavigate()
 
     const formSchema = yup.object().shape({
         username: yup.string().required('Please enter a name'),
@@ -23,11 +24,7 @@ const Signup = () => {
                 headers: {'Content-Type': 'application/json',},
                 body: JSON.stringify(values)
             })
-            .then(r => {
-                if (r.status == 200) {
-                    setRefreshPage(!refreshPage)
-                }
-            })
+            .then(() => navigate('/login'))
         }
     })
 
@@ -86,7 +83,7 @@ const Signup = () => {
                         style={inputStyles}
                         className='mb-6 border rounded-xl border-slate-800 focus:outline-none focus:border-green-700'
                     />
-                    <button type="submit" className='font-montserrat bg-green-700 text-white rounded-xl mt-8 p-1 w-2/5 mx-auto hover:bg-green-200 hover:text-green-700'>Log In</button>
+                    <button type="submit" className='font-montserrat bg-green-700 text-white rounded-xl mt-8 p-1 w-2/5 mx-auto hover:bg-green-200 hover:text-green-700'>Sign Up</button>
                     <p className='font-kanit text-[14px] mt-6 mb-4 mx-auto'>Already a customer? <a href="/login" className='font-montserrat text-green-700 text-[14px] hover:underline'>Sign in instead</a></p>
                 </form>
             </div>

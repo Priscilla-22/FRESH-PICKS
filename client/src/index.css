@@ -5,24 +5,29 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 body::-webkit-scrollbar {
     display: none;
 }
 
-#display{
+#display {
     background-image: url('https://res.cloudinary.com/doifxgf1h/image/upload/v1713332231/GROCERY%20ITEMS/delicious-1_oephvs.avif');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    height:70vh;
-   
+    height: 70vh;
+
 }
-#display-1{
+
+#display-1 {
     opacity: 0.8;
 }
-#category{
+
+/* #category {
     background: #008800;
-}
-li a.active{
+} */
+
+li a.active {
     border-bottom: 2px solid #0a0c0a;
 }

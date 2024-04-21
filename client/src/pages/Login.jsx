@@ -3,17 +3,16 @@ import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom'
 
+
 const Login = () => {
     const navigate = useNavigate()
 
     const formSchema = yup.object().shape({
-        username: yup.string().required('Please enter a name'),
         email: yup.string().email('Invalid email').required('Please enter an email'),
     })
 
     const formik = useFormik({
         initialValues: {
-            username: '',
             email: '',
         },
         validationSchema: formSchema,
@@ -35,17 +34,7 @@ const Login = () => {
             <div className='mx-auto mt-10 pt-5 border border-slate-500 rounded-md w-[25%] h-fit flex flex-col items-center justify-evenly'>
                 <h1 className='font-montserrat text-3xl font-bold text-green-700 mb-5'>Log In</h1>
                 <form onSubmit={formik.handleSubmit} className='m-auto flex flex-col justify-evenly'>
-                    <label htmlFor="username" className='font-montserrat text-slate-600'>Username</label>
-                    <input
-                        type="text"
-                        name="username"
-                        id="username"
-                        onChange={formik.handleChange}
-                        value={formik.values.username}
-                        style={inputStyles}
-                        className='mb-6 placeholder:font-kanit font-kanit border rounded-xl border-slate-800 focus:outline-none focus:border-green-700'
-                    />
-                    <p className='font-kanit text-red-500'>{formik.errors.username}</p>
+                    
                     <label htmlFor="email" className='font-montserrat mt-6 text-slate-600'>Email Address</label>
                     <input
                         type="email"
