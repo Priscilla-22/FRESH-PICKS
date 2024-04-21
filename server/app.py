@@ -175,7 +175,7 @@ class Carts(Resource):
 class CartsId(Resource):
     def delete(self, id):
         print(id)  # Debugging
-        item = Cart.query.get(id)
+        item = Cart.query.get()
         if item:
             db.session.delete(item)
             db.session.commit()

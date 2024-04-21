@@ -1,35 +1,23 @@
 from app import app
-from models import Customer, Product, db
-
+from models import Customer, Product, Branch
+from config import db
 with app.app_context():
+    db.drop_all()
     db.create_all()
     # Delete all rows in all tables
     print('Deleting rows...')
 
-    Customer.query.delete()
+    
+    Branch.query.delete()
 
     print('Rows deleted.')
 
     # Create customer objects
     print('Creating customers...')
 
-    jd = Customer(username='John Doe', email='johndoe@email.com')
-    jw = Customer(username='Johnny Walker', email='jw@email.com')
-    cm = Customer(username='Captain Morgan', email='capmorgan@email.com')
-    rs = Customer(username='Ricky Stanicky', email='staniricky@email.com')
+   
 
-    print('Customers created.')
-
-    # Add objects to session and commit
-    print('Adding customers to database...')
-
-    db.session.add_all([jd, jw, cm, rs])
-    db.session.commit()
-    
-    print('Done!')
-
-    
-    
+   
     products=[]
     
     
@@ -98,4 +86,37 @@ with app.app_context():
     ))
     db.session.add_all(products)
     db.session.commit()
+    db.session.commit()
+
+
+
+
+    b1 = Branch(name = "Fresh Picks-TRM Branch", 
+                location = "Roysambu, Nairobi", 
+                image = "https://res.cloudinary.com/dntrvpmzh/image/upload/v1713501143/klutiaaqylcyitxl0ulp.jpg")
+    b2 = Branch(name = 'Fresh Picks-Sarit Branch', 
+                location = "Westlands, Nairobi", 
+                image = "https://res.cloudinary.com/dntrvpmzh/image/upload/v1713500841/whto3nuxq4yzmxiar34t.jpg")
+    b3 = Branch(name = 'Fresh Picks-Mountain View Mall Branch', 
+                location = "Along Mombasa Road", 
+                image = "https://res.cloudinary.com/dntrvpmzh/image/upload/v1713500301/apus2phypyrrl4kmwcrx.jpg")
+    
+    db.session.add_all([b1, b2, b3])
+    db.session.commit()
+    
+    customers=[]
+    customers.append(Customer(
+        username="Simon Smith",
+        password='7889kangi',
+        email="simonm@gmail.com",
+    ))
+    customers.append(Customer(
+        username="erick Smith",
+        email="erick@gmail.com",
+        password='2233erick',
+        
+    ))
+    for customer in customers:
+        db.session.add(customers)
+
     db.session.commit()
