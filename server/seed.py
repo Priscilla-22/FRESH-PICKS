@@ -104,6 +104,23 @@ with app.app_context():
     db.session.add_all([b1, b2, b3])
     db.session.commit()
     
+
+
+
+
+    b1 = Branch(name = "Fresh Picks-TRM Branch", 
+                location = "Roysambu, Nairobi", 
+                image = "https://res.cloudinary.com/dntrvpmzh/image/upload/v1713501143/klutiaaqylcyitxl0ulp.jpg")
+    b2 = Branch(name = 'Fresh Picks-Sarit Branch', 
+                location = "Westlands, Nairobi", 
+                image = "https://res.cloudinary.com/dntrvpmzh/image/upload/v1713500841/whto3nuxq4yzmxiar34t.jpg")
+    b3 = Branch(name = 'Fresh Picks-Mountain View Mall Branch', 
+                location = "Along Mombasa Road", 
+                image = "https://res.cloudinary.com/dntrvpmzh/image/upload/v1713500301/apus2phypyrrl4kmwcrx.jpg")
+    
+    db.session.add_all([b1, b2, b3])
+    db.session.commit()
+    
     customers=[]
     customers.append(Customer(
         username="Simon Smith",

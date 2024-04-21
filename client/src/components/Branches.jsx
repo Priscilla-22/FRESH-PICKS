@@ -1,5 +1,4 @@
-
-import React, {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 import Branch from './Branch'
 import Header from '../Components/HomePage/Header'
 import Footer from '../Components/HomePage/Footer'
@@ -24,8 +23,8 @@ console.log(branches)
     return(
         <div className="w-full">
             <Header/>
-            <h1  className="px-55 my-10 flex place-content-center w-40 mx-auto  text-3xl text-center font-extrabold text-black bg-white">OUR BRANCHES</h1>
-            <div className="flex non-wrap justify-between p-5">
+            <h1 id="category" className="p-24 my-10 flex place-content-center w-full text-3xl font-extrabold text-white">OUR BRANCHES</h1>
+            <div className="flex non-wrap justify-between">
                 {branches.map((branch) => {
                     return(
                         <Branch
