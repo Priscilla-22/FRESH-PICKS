@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
-
+import { toast } from 'react-toastify'
 
 const Signup = () => {
     const [refreshPage, setRefreshPage] = useState(false)
@@ -15,6 +15,8 @@ const Signup = () => {
         initialValues: {
             username: '',
             email: '',
+            password:'',
+            password_confirmation: '',
         },
         validationSchema: formSchema,
         onSubmit: values => {
@@ -27,7 +29,18 @@ const Signup = () => {
                 if (r.status == 200) {
                     setRefreshPage(!refreshPage)
                 }
+                
+            
             })
+            .then((data)=>{
+                console.log(data)
+                toast.success("Customer added successfully", {position:'top-center'})
+ 
+            })
+            .catch(error => {
+                 console.error('Error adding user:', error);
+                 toast.error("Error adding user", {position:'top-center'})
+             })
         }
     })
 
@@ -80,8 +93,8 @@ const Signup = () => {
                     <label htmlFor="password" className='font-montserrat mt-6 text-slate-800'>Confirm Password</label>
                     <input
                         type="password"
-                        name="password"
-                        id="password"
+                        name="password_confirmation"
+                        id="password_confirmation"
                         onChange={formik.handleChange}
                         style={inputStyles}
                         className='mb-6 border rounded-xl border-slate-800 focus:outline-none focus:border-green-700'
