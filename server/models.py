@@ -1,4 +1,3 @@
-
 from config import db,bcrypt
 from sqlalchemy.orm import validates
 from sqlalchemy_serializer import SerializerMixin
@@ -8,7 +7,6 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 import datetime
 Base = declarative_base()
-
 
 
 class Customer(db.Model, SerializerMixin):
@@ -61,7 +59,6 @@ class Customer(db.Model, SerializerMixin):
     def __repr__(self):
         return f'<Customer {self.username} created.>'
 
-    
 
 class Product(db.Model, SerializerMixin):
     __tablename__ = 'products'
@@ -88,7 +85,7 @@ class Product(db.Model, SerializerMixin):
             raise validates.ValidationError("Name already exists")
         
         return name
-    
+
 class Cart(db.Model,SerializerMixin):
     serialize_only =("id","name","price", "image", "total", "customer_id")
     serialize_rules=()
@@ -99,7 +96,30 @@ class Cart(db.Model,SerializerMixin):
     total=db.Column(db.Integer(), default=0)
     customer_id=db.Column(db.Integer(),db.ForeignKey('customers.id'))
     product_id=db.Column(db.Integer(),db.ForeignKey('products.id'))
-    
 
-            
-    
+
+class Branch(db.Model, SerializerMixin):
+    __tablename__ = "branches"
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+    location = db.Column(db.String, nullable=False)
+    image = db.Column(db.String, nullable=True)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+
+    @validates("name")
+    def validate_name(self, key, name):
+        ex_branch = Branch.query.filter(Branch.name == name).first()
+        if ex_branch:
+            raise NameError("Name already exists")
+        return name
+
+    @validates("location")
+    def validate_location(self, key, location):
+        ex_location = Branch.query.filter(Branch.location == location).first()
+        if ex_location:
+            raise NameError("Location already exists")
+        return location
+
+    def __repr__(self):
+        return f"Branch {self.id}, {self.name}, {self.location}, {self.created_at}"
