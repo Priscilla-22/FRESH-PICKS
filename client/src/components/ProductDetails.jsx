@@ -4,13 +4,17 @@ import DoneIcon from '@mui/icons-material/Done';
 import { toast } from 'react-toastify';
 import { Box } from '@mui/material';
 import { Formik } from 'formik';
+import { useDispatch } from 'react-redux';
 import Header from '../Components/HomePage/Header';
 import Footer from '../Components/HomePage/Footer';
-
+import { useGetAllItemQuery } from '../features/productApi';
+import { addToCart } from '../features/CartSlice';
 function ProductDetails() {
   const currentProduct = useLocation();
-  const [isLoading, setLoading] = useState(false);
+//   const {data,error,isLoading} = useGetAllItemQuery();
+const [isLoading, setLoading] =useState()
   const [category, setCategory] = useState([]);
+  const dispatch= useDispatch();
   const [review, setReview] = useState({
     review: '',
   });
@@ -22,6 +26,7 @@ function ProductDetails() {
       console.error('No product data provided');
       return;
     }
+    dispatch(addToCart(product));
     setLoading(true);
     const productData = {
       product_id: product.id,
@@ -50,13 +55,14 @@ function ProductDetails() {
         // Fetch the updated cart data and display it on the current page
         fetchUpdatedCartData();
         // Navigate to the cart page after successful addition
-        navigate('/cart');
+       
       })
       .catch((error) => {
         console.error('Error adding product to cart:', error);
-        toast.error('Error adding product to cart', { position: 'top-center' });
+        
         setLoading(false); // Reset loading state on error
       });
+      navigate('/cart');
   }
 
   function fetchUpdatedCartData() {
