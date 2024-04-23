@@ -4,50 +4,43 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../Components/HomePage/Header';
 import Footer from '../Components/HomePage/Footer';
 import { toast } from 'react-toastify';
-
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { removeFromCart,incrementItems,decrementItems,clearCart } from '../features/CartSlice';
 function Cart() {
-  const [cartItems, setCartItems] = useState([]);
+//   const [cartItems, setCartItems] = useState([]);
+  const cart = useSelector((state) => state.cart);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  useEffect(() => {
-    fetch('http://127.0.0.1:5555/cart')
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setCartItems(result);
-        },
-        (error) => {
-          setError(error);
-        }
-      );
-  }, []);
+const dispatch=useDispatch()
+//   
 
 function handleRemoveFromCart(itemId) {
-  fetch(`http://127.0.0.1:5555/cart/${itemId}`, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error('Failed to remove item from cart');
-      }
-      setCartItems((prevCartItems) =>
-        prevCartItems.filter((item) => item.id !== itemId)
-      );
-      toast.info('Successfully removed item from cart', {
-        position: 'bottom-left',
-      });
-    })
-    .catch((error) => {
-      setError(error.message);
-    });
+    fetch(`http://127.0.0.1:5555/cart/${itemId}`,{
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+
+     .then((res) => res.json())
+  dispatch(removeFromCart(itemId));
+}
+function handleIncrement(itemId) {
+    dispatch(incrementItems(itemId));
+}
+function handleDecrement(itemId) {
+    dispatch(decrementItems(itemId));
+}
+function handleRemoveFromCart(itemId) {
+    dispatch(removeFromCart(itemId));
+}
+function ClearCart(){
+    dispatch(clearCart())
 }
 
-
   function handleCheckOut() {
-    navigate(`/checkout`, { state: cartItems });
+    navigate(`/checkout`, { state: cart.cartItems });
   }
 
   return (
@@ -59,7 +52,7 @@ function handleRemoveFromCart(itemId) {
         {/* {error && (
         //   <div className='text-red-500 text-center'>{error.toString()}</div>
         )} */}
-        {!cartItems.length ? (
+        {!cart.cartItems.length ? (
           <div className='text-center mt-8'>
             <div className='flex justify-center items-center'>
               <img
@@ -88,7 +81,7 @@ function handleRemoveFromCart(itemId) {
               <div>Price</div>
               <div>Total</div>
             </div>
-            {cartItems.map((item) => (
+            {cart.cartItems.map((item) => (
               <div
                 className='flex items-center justify-between border-b py-2'
                 key={item.id}
@@ -110,24 +103,27 @@ function handleRemoveFromCart(itemId) {
                   </div>
                 </div>
                 <div className='flex'>
-                  <button className='border-2 rounded-md border-gray-300 px-3 py-3 text-2xl'>
+                  <button onClick={()=>handleDecrement(item.id)} className='border-2 rounded-md border-gray-300 px-3 py-3 text-2xl'>
                     -
                   </button>
                   <div className='border-2 border-gray-300 px-3 py-3 text-2xl'>
-                    {item.total}
+                    {item.cartQuantity}
                   </div>
-                  <button className='border-2 rounded-md border-gray-300 px-3 py-3 text-2xl'>
+                  <button onClick={()=>handleIncrement(item.id) }className='border-2 rounded-md border-gray-300 px-3 py-3 text-2xl'>
                     +
                   </button>
                 </div>
                 <div>Ksh. {item.price ? item.price : 'no price'}</div>
-                <div>Ksh. {item.price ? item.price : 'no price'}</div>
+                <div>Ksh. {item.price * item.cartQuantity}</div>
               </div>
             ))}
             <div className='flex justify-between font-bold mb-2'>
               <div className='text-2xl'>Subtotal</div>
-              <div>Ksh. {cartItems.reduce((a, b) => a + b.total, 0)}</div>
+              <div>Ksh.{cart.cartTotalAmount}</div>
+              
+              
             </div>
+            <button onClick={ClearCart} className='px-8 py-3 bg-red-700 text-white rounded-sm mx-3 font-bold'>Clear Cart</button>
             <button
               onClick={() => navigate('/products')}
               className='px-8 py-3 mt-5 bg-green-600 text-white font-bold'
