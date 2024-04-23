@@ -2,14 +2,13 @@ import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import ArrowLeft  from '../../shared/ArrowLeft';
+import ArrowLeft from '../../shared/ArrowLeft';
 import ArrowRight from '../../shared/ArrowRight';
 
 const Testimonials = () => {
   const testimonials = [
     {
       id: 1,
-
       name: 'Simon Mwangi',
       title: 'CEO of Acme Inc.',
       quote:
@@ -34,8 +33,8 @@ const Testimonials = () => {
       name: 'Philip Wekullo',
       title: 'Marketing Manager',
       quote:
-        'I love how easy it is to use Fresh Picks. The website is intuitive and the selection of products is impress'
-    }
+        'I love how easy it is to use Fresh Picks. The website is intuitive and the selection of products is impress',
+    },
   ];
 
   const settings = {
@@ -45,20 +44,24 @@ const Testimonials = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     adaptiveHeight: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
     nextArrow: <ArrowRight />,
-    prevArrow: <ArrowLeft />
+    prevArrow: <ArrowLeft />,
   };
 
   return (
-    <div className="py-16 bg-gray-100">
-      <div className="container mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-8">What Our Customers Are Saying</h2>
+    <div className='py-16 bg-gray-100'>
+      <div className='container mx-auto text-center'>
+        <h2 className='text-4xl font-bold mb-8'>
+          What Our Customers Are Saying
+        </h2>
         <Slider {...settings}>
           {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="text-center">
-              <p className="text-gray-600 mb-4">{testimonial.quote}</p>
-              <p className="text-gray-800 font-bold mb-2">{testimonial.name}</p>
-              <p className="text-gray-600">{testimonial.title}</p>
+            <div key={testimonial.id} className='text-center'>
+              <p className='text-gray-600 mb-4'>{testimonial.quote}</p>
+              <p className='text-gray-800 font-bold mb-2'>{testimonial.name}</p>
+              <p className='text-gray-600'>{testimonial.title}</p>
             </div>
           ))}
         </Slider>
