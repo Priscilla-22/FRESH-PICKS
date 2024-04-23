@@ -1,12 +1,11 @@
 from flask import Flask, request, make_response, jsonify, session
 from models import Product, Cart, Customer, Branch
-
 from flask_restful import Api, Resource
 from flask_cors import CORS
-from config import app, db
 import os
+from config import db, create_app
 
-
+app = create_app()
 api = Api(app)
 
 
@@ -177,11 +176,7 @@ class CartsId(Resource):
             return jsonify({"message": "Item deleted successfully"}), 200
         else:
             return jsonify({"message": "Item not found"}), 404
-  
-api.add_resource(Products,'/products', endpoint="/products")
-api.add_resource(ProductsId,'/products/<int:id>',endpoint="/products/<int:id>")
-api.add_resource(Carts,'/cart',endpoint="/cart")
-api.add_resource(CartsId,'/cart/<int:id>',endpoint="/cart/<int:id>")
+
 
 class Branches(Resource):
     def get(self):
