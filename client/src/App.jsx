@@ -1,7 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './index.css';
-import Products from './components/products';
+import { Routes,Route } from "react-router-dom";
+import { useState } from 'react'
+import Products from './components/products'
 import Branches from './components/Branches.jsx';
 import AddProducts from './components/AddProducts';
 import ProductDetails from './components/ProductDetails';

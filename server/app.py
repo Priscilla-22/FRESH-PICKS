@@ -232,10 +232,6 @@ api.add_resource(BranchByID, "/branches/<int:id>")
 api.add_resource(Branches, "/branches")
 
 
-api.add_resource(Products, "/products", endpoint="/products")
-api.add_resource(ProductsId, "/products/<int:id>", endpoint="/products/<int:id>")
-api.add_resource(Carts, "/cart", endpoint="/cart")
-api.add_resource(CartsId, "/cart/<int:id>", endpoint="/cart/<int:id>")
 
 
 if __name__ == "__main__":

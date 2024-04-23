@@ -66,7 +66,7 @@ const [isLoading, setLoading] =useState()
   }
 
   function fetchUpdatedCartData() {
-    fetch('http://127.0.0.1:5555/cart')
+    fetch('/cart')
       .then((res) => res.json())
       .then((data) => {
         console.log('Updated cart data:', data);
