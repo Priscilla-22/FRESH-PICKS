@@ -116,6 +116,7 @@ class Products(Resource):
             # Assign user_id from session
         )
         db.session.add(new_product)
+        db.session.add(new_product)
         db.session.commit()
         return jsonify({"message": "Product added successfully"}), 201
 
@@ -143,11 +144,17 @@ class ProductsId(Resource):
 
         return response
 
+        response = make_response(response_dict, 200)
+
+        return response
+
 
 class Carts(Resource):
     def get(self):
         cart_items = [item.to_dict() for item in Cart.query.all()]
         if cart_items:
+
+            return jsonify(cart_items)
 
             return jsonify(cart_items)
         else:
@@ -232,8 +239,6 @@ class BranchByID(Resource):
 
 api.add_resource(BranchByID, "/branches/<int:id>")
 api.add_resource(Branches, "/branches")
-
-
 api.add_resource(Products, "/products", endpoint="/products")
 api.add_resource(ProductsId, "/products/<int:id>", endpoint="/products/<int:id>")
 api.add_resource(Carts, "/cart", endpoint="/cart")

@@ -10,9 +10,10 @@ import Checkout from './components/Checkout';
 import Homepage from './Components/HomePage/HomePage.jsx';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+
 function App() {
   return (
-    <main className='app'>
+    <main>
       <Routes>
         <Route path='/' element={<Homepage />} />
         <Route path='/login' element={<Login />} />

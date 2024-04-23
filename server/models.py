@@ -96,7 +96,8 @@ class Cart(db.Model,SerializerMixin):
     total=db.Column(db.Integer(), default=0)
     customer_id=db.Column(db.Integer(),db.ForeignKey('customers.id'))
     product_id=db.Column(db.Integer(),db.ForeignKey('products.id'))
-    
+
+
 class Branch(db.Model, SerializerMixin):
     __tablename__ = "branches"
 
