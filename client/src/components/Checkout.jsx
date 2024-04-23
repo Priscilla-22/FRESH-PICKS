@@ -16,13 +16,13 @@ function Checkout() {
     return (
         <>
             <Header />
-            <div className="container mx-auto mt-8">
+            <div className="container mx-auto mt-8 ">
                 {!cart.cartItems.length ? (
                     <div className="text-center">
                         <div className="text-2xl text-red-600 font-bold mb-4">No items bought</div>
                     </div>
                 ) : (
-                    <div className='bg-gray-100 p-3 w-1/2 m-4'>
+                    <div className='bg-gray-100 p-3  w-1/2 mx-auto'>
                         <h1 className="text-3xl text-green-600 font-bold mb-4">Your Order</h1>
                         <div className="block w-75 items-center px-4 bg-white shadow-sm justify-around border-2 border-b py-4 mb-5">
                         <div className='font-bold'>Product</div>
