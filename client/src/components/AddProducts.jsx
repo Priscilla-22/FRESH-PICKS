@@ -23,7 +23,7 @@ function AddProducts() {
           }}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
-              fetch('http://127.0.0.1:5555/products', {
+              fetch('http://127.0.0.1:8000/products', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',

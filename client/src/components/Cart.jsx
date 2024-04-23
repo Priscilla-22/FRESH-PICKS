@@ -16,7 +16,7 @@ const dispatch=useDispatch()
 //   
 
 function handleRemoveFromCart(itemId) {
-    fetch(`http://127.0.0.1:5555/cart/${itemId}`,{
+    fetch(`http://127.0.0.1:8000/cart/${itemId}`,{
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

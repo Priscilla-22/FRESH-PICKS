@@ -31,7 +31,7 @@ function Category({ handleFilter }) {
         </button>
         <hr className='border-gray-300' />
         <button
-          onClick={() => handleClick('fruits')}
+          onClick={() => handleClick('Fruits')}
           className={`w-full py-3 font-bold text-lg text-gray-800 rounded ${
             activeCategory === 'fruits' ? 'bg-gray-200' : 'hover:bg-gray-200'
           }`}

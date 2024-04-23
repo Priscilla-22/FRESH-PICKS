@@ -16,9 +16,7 @@ def create_app():
     app.secret_key = b"\xdbL\xcfMV\xac\x884\xd9\xfe1\xcd\xda\xef\xeaW"
 
     # Set a default database URI
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(
-        "DATABASE_URL", "sqlite:///app.db"
-    )
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
     print("Database URI:", app.config["SQLALCHEMY_DATABASE_URI"])
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
