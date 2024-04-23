@@ -116,7 +116,7 @@ class Products(Resource):
             image=data.get("image"),
             # Assign user_id from session
         )
-        db.session.add(jsonify(new_product))
+        db.session.add(new_product)
         db.session.commit()
         return jsonify({"message": "Product added successfully"}), 201
 
@@ -177,7 +177,11 @@ class CartsId(Resource):
             return jsonify({"message": "Item deleted successfully"}), 200
         else:
             return jsonify({"message": "Item not found"}), 404
-
+  
+api.add_resource(Products,'/products', endpoint="/products")
+api.add_resource(ProductsId,'/products/<int:id>',endpoint="/products/<int:id>")
+api.add_resource(Carts,'/cart',endpoint="/cart")
+api.add_resource(CartsId,'/cart/<int:id>',endpoint="/cart/<int:id>")
 
 class Branches(Resource):
     def get(self):

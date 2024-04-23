@@ -1,5 +1,5 @@
 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 
 
 import Login from "./pages/Login"
@@ -18,7 +18,7 @@ import Homepage from './Components/HomePage/HomePage.jsx';
 function App() {
   return (
   
-      <main>
+      <main className="app">
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path='/login' element={<Login/>}/>

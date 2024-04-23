@@ -1,13 +1,15 @@
 from app import app
-from models import Customer, Product, Branch
+from models import Customer, Product,Branch
 from config import db
 
 with app.app_context():
     db.drop_all()
     db.create_all()
-    print("Deleting rows...")
+    # Delete all rows in all tables
+    print('Deleting rows...')
 
-    Branch.query.delete()
+    
+    
 
     print("Rows deleted.")
 
@@ -114,23 +116,26 @@ with app.app_context():
 
     db.session.add_all([b1, b2, b3])
     db.session.commit()
+    
 
-    customers = []
-    customers.append(
-        Customer(
-            username="Simon Smith",
-            password="7889kangi",
-            email="simonm@gmail.com",
-        )
-    )
-    customers.append(
-        Customer(
-            username="erick Smith",
-            email="erick@gmail.com",
-            password="2233erick",
-        )
-    )
+
+
+
+   
+    
+    customers=[]
+    customers.append(Customer(
+        username="Simon Smith",
+        password='7889kangi',
+        email="simonm@gmail.com",
+    ))
+    customers.append(Customer(
+        username="erick Smith",
+        email="erick@gmail.com",
+        password='2233erick',
+        
+    ))
     for customer in customers:
-        db.session.add(customers)
+        db.session.add(customer)
 
     db.session.commit()
