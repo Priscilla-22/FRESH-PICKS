@@ -8,7 +8,7 @@ function SearchBar({ HandleChange, value }) {
         <input
           id='search'
           type='text'
-          className='w-full p-4 pr-16 rounded-md border-2 border-zinc-500'
+          className='w-full p-2 pr-16 rounded-md border-2 border-zinc-300'
           onChange={HandleChange}
           value={value}
           placeholder='Search by name...'

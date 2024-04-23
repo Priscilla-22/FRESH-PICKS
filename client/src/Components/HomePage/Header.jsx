@@ -63,7 +63,7 @@ import { useSelector } from 'react-redux';
 
 
         </div>
-        <div className='flex items-center space-x-4'><Link to='/AddProducts'>AddProducts</Link></div>
+        <div className='flex items-center space-x-4'><Link to='/AddProducts'>Add<span className='text-red-600'>*</span>Products</Link></div>
       </div>
     </header>
   );
