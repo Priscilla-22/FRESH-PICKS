@@ -11,7 +11,10 @@ migrate = Migrate()
 
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, static_url_path='',
+    static_folder='../client/build',
+    template_folder='../client/build'
+)
     CORS(app)
     app.secret_key = b"\xdbL\xcfMV\xac\x884\xd9\xfe1\xcd\xda\xef\xeaW"
 

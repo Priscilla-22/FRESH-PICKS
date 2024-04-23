@@ -4,6 +4,9 @@ from flask_restful import Api, Resource
 from flask_cors import CORS
 import os
 from config import db, create_app
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = create_app()
 api = Api(app)
