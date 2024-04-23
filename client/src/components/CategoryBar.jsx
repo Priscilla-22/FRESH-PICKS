@@ -13,7 +13,7 @@ function Category({ handleFilter }) {
   return (
     <div
       id='category'
-      className='sticky top-0 left-0 w-64 h-screen bg-green-600 p-4 my-5'
+      className='sticky top-0 left-0 w-64 h-full bg-green-600 p-4 my-5'
     >
       <div className='flex flex-col space-y-2'>
         <img

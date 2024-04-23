@@ -3,7 +3,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 function SearchBar({ HandleChange, value }) {
   return (
-    <div className='sticky top-0 mx-auto text-center mt-2 mb-4'>
+    <div className='top-0 mx-auto text-center mt-2 mb-4'>
       <div className='relative w-1/2 mx-auto'>
         <input
           id='search'

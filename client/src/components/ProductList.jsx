@@ -19,7 +19,7 @@ function ProductList({
   return (
     <div>
       <Box
-        className='box  hover:shadow-md px-4 py-4 w-64 mx-auto relative mb-2 border border-gray-100 rounded-lg ml-1'
+        className='box  hover:shadow-md px-4 py-4 w-60 mx-auto relative mb-2 border border-gray-100 rounded-lg ml-1'
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
