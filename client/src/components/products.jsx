@@ -24,7 +24,7 @@ function Products() {
   }
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/products')
+    fetch('https://group-c.onrender.com/products')
       .then((res) => res.json())
       .then(setProducts)
       .catch((error) => console.error('Error fetching products:', error));

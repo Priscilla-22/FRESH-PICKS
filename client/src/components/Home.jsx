@@ -14,7 +14,7 @@ function Home() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch('http://127.0.0.1:5555/products')
+        fetch('https://group-c.onrender.com/products')
             .then(res => res.json())
             .then(setProducts)
             .catch(error => console.error('Error fetching products:', error));

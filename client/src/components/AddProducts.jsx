@@ -23,7 +23,7 @@ function AddProducts() {
           }}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
-              fetch('http://127.0.0.1:8000/products', {
+              fetch('https://group-c.onrender.com/products', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',

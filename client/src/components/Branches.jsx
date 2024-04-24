@@ -6,9 +6,9 @@ import Footer from '../Components/HomePage/Footer'
 function Branches(){
     const [branches, setBranches] = useState([])
     useEffect(() => {
-        fetch("http://127.0.0.1:5555/branches")
-        .then((r) => r.json())
-        .then((branches) => setBranches(branches))
+        fetch(' https://group-c.onrender.com/branches')
+          .then((r) => r.json())
+          .then((branches) => setBranches(branches));
     }, [])
 
     if (!branches){

@@ -16,14 +16,12 @@ const dispatch=useDispatch()
 //   
 
 function handleRemoveFromCart(itemId) {
-    fetch(`http://127.0.0.1:8000/cart/${itemId}`,{
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-
-     .then((res) => res.json())
+    fetch(` https://group-c.onrender.com/cart/${itemId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then((res) => res.json());
   dispatch(removeFromCart(itemId));
 }
 function handleIncrement(itemId) {

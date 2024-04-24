@@ -35,7 +35,7 @@ const [isLoading, setLoading] =useState()
       image: product.image,
     };
 
-    fetch(`http://127.0.0.1:5555/cart`, {
+    fetch(` https://group-c.onrender.com/cart`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ const [isLoading, setLoading] =useState()
   }
 
   function fetchUpdatedCartData() {
-    fetch('http://127.0.0.1:5555/cart')
+    fetch('https://group-c.onrender.com/cart')
       .then((res) => res.json())
       .then((data) => {
         console.log('Updated cart data:', data);
@@ -83,7 +83,7 @@ const [isLoading, setLoading] =useState()
   }
 
   function handleSubmit(product) {
-    return fetch(`http://127.0.0.1:5555/products/${product.id}`, {
+    return fetch(`https://group-c.onrender.com/products/${product.id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ const [isLoading, setLoading] =useState()
   }
 
   useEffect(() => {
-    fetch('http://127.0.0.1:5555/products')
+    fetch('https://group-c.onrender.com/products')
       .then((res) => res.json())
       .then(setCategory)
       .catch((error) => console.error('Error fetching products:', error));

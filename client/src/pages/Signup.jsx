@@ -20,7 +20,7 @@ const Signup = () => {
         },
         validationSchema: formSchema,
         onSubmit: values => {
-            fetch('http://localhost:5555/customers', {
+            fetch( 'https://group-c.onrender.com/customers', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json',},
                 body: JSON.stringify(values)
