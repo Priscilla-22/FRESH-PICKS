@@ -44,7 +44,7 @@ import { useSelector } from 'react-redux';
           </ul>
         </nav>
         <div className='flex items-center space-x-4'>
-          <a href='login' className='hover:underline'>
+          <a href='/login' className='hover:underline'>
             Login
           </a>
 
